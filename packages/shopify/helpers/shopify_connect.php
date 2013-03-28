@@ -8,9 +8,9 @@ class ShopifyConnectHelper {
 
 	public function getShopifyClient($useToken = true) {
 		return new ShopifyClient($this->getShopID(),
-								 ($useToken?$this->getToken():''),
-								 $this->getShopKey(),
-								 $this->getShopSecret());
+		                         ($useToken?$this->getToken():''),
+		                         $this->getShopKey(),
+		                         $this->getShopSecret());
 	}
 
 	public function getShopID() {
