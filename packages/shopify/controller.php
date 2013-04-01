@@ -16,6 +16,10 @@ class ShopifyPackage extends Package {
 
 	public function install() {
 		$pkg = parent::install();
+		Loader::model('single_page');
+		if(Page::getByPath('/dashboard/shopify')->getCollectionID() <= 0) {
+			SinglePage::add('/dashboard/shopify',$pkg);
+		}
 	}
 
 	public function upgrade() {

@@ -6,30 +6,37 @@ class ShopifyConnectHelper {
 	protected $id;
 	protected $secret;
 
+	//public function __construct() {
+		//return $this->getShopifyClient();
+	//}
+
 	public function getShopifyClient($useToken = true) {
 		return new ShopifyClient($this->getShopID(),
 		                         ($useToken?$this->getToken():''),
-		                         $this->getShopKey(),
-		                         $this->getShopSecret());
+		                         $this->getApiKey(),
+		                         $this->getApiSecret());
 	}
 
 	public function getShopID() {
+		$pkg = Package::getByHandle('shopify');
 		if (!$this->id) {
-			$this->id = Config::get('SHOPIFY_SHOP_ID');
+			$this->id = $pkg->config('myshopifyURL');
 		}
 		return $this->id;
 	}
 
 	public function getApiKey() {
+		$pkg = Package::getByHandle('shopify');
 		if (!$this->key) {
-			$this->key = Config::get('SHOPIFY_SHOP_KEY');
+			$this->key = $pkg->config('apikey');
 		}
 		return $this->key;
 	}
 
 	public function getApiSecret() {
+		$pkg = Package::getByHandle('shopify');
 		if (!$this->secret) {
-			$this->secret = Config::get('SHOPIFY_SHOP_SECRET');
+			$this->secret = $pkg->config('secret');
 		}
 		return $this->secret;
 	}
@@ -39,7 +46,7 @@ class ShopifyConnectHelper {
 			return $_SESSION['token'];
 		}
 		$client = $this->getShopifyClient(false);
-		return $shopifyClient->getAccessToken($_GET['code']);
+		return $client->getAccessToken($_GET['code']);
 	}
 
 }
