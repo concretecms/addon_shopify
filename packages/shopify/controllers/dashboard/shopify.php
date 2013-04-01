@@ -4,9 +4,9 @@ class DashboardShopifyController extends DashboardBaseController {
 
 	protected $things = array(
 		'myshopifyURL',
-		'token',
-		'apikey',
-		'secret'
+		'password',
+		'apikey'//,
+		//'secret' //no longer used.
 	);
 
 	public function view() {

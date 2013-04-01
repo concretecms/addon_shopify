@@ -20,6 +20,7 @@ class ShopifyPackage extends Package {
 		if(Page::getByPath('/dashboard/shopify')->getCollectionID() <= 0) {
 			SinglePage::add('/dashboard/shopify',$pkg);
 		}
+		BlockType::installBlockTypeFromPackage('shopify_product', $pkg);	
 	}
 
 	public function upgrade() {
