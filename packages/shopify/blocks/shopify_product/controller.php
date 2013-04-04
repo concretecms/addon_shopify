@@ -12,18 +12,27 @@ class ShopifyProductBlockController extends BlockController {
 	protected $btCacheBlockOutputLifetime = CACHE_LIFETIME;
 
 	public function getBlockTypeName() {
-		return t('Shopify Products');
+		return t('Shopify Product');
 	}
 
 	public function getBlockTypeDescription() {
-		return t('Display Products from your shopify store in your concrete5 website');
+		return t('Display a single product from your Shopify store.');
+	}
+
+	public function add() {
+		Loader::library('shopify_basic','shopify');
+		$availableProducts = shopifyBasic::getProducts();
+		$this->set('availableProducts',$availableProducts);
 	}
 
 	public function edit() {
 		//$localProducts = $this->getProducts(); //nothing yet
-		Loader::library('shopify_basic');
-		$availableProducts = shopifyBasic::getProducts();
-		$this->set('availableProducts',$availableProducts);
+		$this->add();
+	}
+
+	public function view() {
+		$product = shopifyBasic::getProducts($this->productID());
+		$this->set('product',$product);
 	}
 
 	public function getProducts() {

@@ -1,3 +1,3 @@
 <? defined('C5_EXECUTE') or die(_("Access Denied.")); ?>
 
-<?=$this->inc('form.php'); ?>
+<?=$this->inc('add_edit.php'); ?>
