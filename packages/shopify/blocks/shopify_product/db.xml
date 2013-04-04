@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<schema version="0.3">
+	<table name="btShopifyProduct">
+		<field name="bID" type="I">
+			<key />
+			<unsigned />
+		</field>
+		<field name="productID" type="I">
+			<unsigned/>
+		</field>
+		<field name="productID" type="I">
+			<unsigned/>
+		</field>
+		<field name="showPicture" type="I" size="1">
+			<notnull/>
+			<default value="1"/>
+		</field>
+		<field name="pictureWidth" type="I8"></field>
+		<field name="pictureHeight" type="I8"></field>
+		<field name="pictureClass" type="C" size="255"/>
+		<field name="showName" type="I1">
+			<notnull/>
+			<default value="1"/>
+		</field>
+		<field name="showDescription" type="I1">
+			<notnull/>
+			<default value="0"/>
+		</field>
+		<field name="showLink" type="I1">
+			<notnull/>
+			<default value="0"/>
+		</field>
+		<field name="linkClass" type="C" size="255"></field>
+		<field name="linkText" type="C" size="255"></field>
+	</table>
+</schema>
+
