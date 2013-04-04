@@ -6,7 +6,7 @@ var shopifyProductBlock ={
 		$('ul#ccm-blockEditPane-tabs li a').each( function(num,el){ 
 			el.onclick=function(){
 				var pane=this.id.replace('ccm-blockEditPane-tab-','');
-				productListBlock.showPane(pane);
+				shopifyProductBlock.showPane(pane);
 			}
 		});		
 	},
@@ -20,4 +20,5 @@ var shopifyProductBlock ={
 
 $(function(){
 	shopifyProductBlock.init();
-}
+	console.log('fuck');
+});

@@ -22,31 +22,34 @@
 			}?>
 	</div>
 </div>
-<div id="ccm-blockEditPane-options" class="ccm-blockEditPane" style="display:none">
+<div id="ccm-blockEditPane-options" class="ccm-blockEditPane ccm-ui" style="display:none">
 	<div class="ccm-block-field-group">
 	<h4><?= t('Display options') ?></h4>
-	<div class="control-group">
-		<label class="control-label" ><?=t('Product Details')?></label>
-		<div class="controls">
-			<label class="checkbox">
-				<input type="checkbox" id="showName"<?=$showName ? ' checked':''?>><?=t('Product Name')?>
-			</label>
-			<label class="checkbox">
-				<input type="checkbox" id="showDescription"<?=$showDescription ? ' checked':''?>><?=t('Product Description')?>
-			</label>
-			<div class="control-group">
-				<label class="control-label" for="name"><?=t('Image')?></label>
-				<div class="controls">
-					<label class="checkbox">
-						<input type="checkbox" id="showPicture"<?=$showPicture ? ' checked':''?>><?=t('Product Image')?>
-					</label>
-					<label for="pictureWidth"><?=t('Width');?></label>
-					<input type="text" id="width" value="<?=$width?>">
-					<label for="pictureHeight"><?=t('Height');?></label>
-					<input type="text" id="pictureHeight" value="<?=$pictureHeight?>">
-				</div>
+	<fieldset>
+		<div class="control-group">
+			<label class="control-label" ><?=t('Product Details')?></label>
+			<div class="controls">
+				<label class="checkbox">
+					<input type="checkbox" id="showName"<?=$showName ? ' checked':''?>><?=t('Product Name')?>
+				</label>
+				<label class="checkbox">
+					<input type="checkbox" id="showDescription"<?=$showDescription ? ' checked':''?>><?=t('Product Description')?>
+				</label>
 			</div>
 		</div>
+		<div class="control-group">
+			<label class="control-label" for="name"><?=t('Image')?></label>
+			<div class="controls">
+				<label class="checkbox">
+					<input type="checkbox" id="showPicture"<?=$showPicture ? ' checked':''?>><?=t('Product Image')?>
+				</label>
+				<label for="pictureWidth"><?=t('Width');?></label>
+				<input type="text" id="width" value="<?=$width?>">
+				<label for="pictureHeight"><?=t('Height');?></label>
+				<input type="text" id="pictureHeight" value="<?=$pictureHeight?>">
+			</div>
+		</div>
+	</fieldset>
 	</div>
 	</div>
 </div>
