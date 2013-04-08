@@ -7,6 +7,7 @@
 </ul>
 
 <div id="ccm-blockEditPane-product" class="ccm-blockEditPane">
+	<input type="hidden" id="productID" value="<?=is_object($product) ? $product->id : ''?>">
 	<div id="pickedProduct">
 	</div>
 	<?if (count($localProducts)) {?>
@@ -16,12 +17,14 @@
 		<?}?>
 		</ul>
 	<? } else {?>
-		<span class="alert span4"><?= t("you haven't picked any products yet.") ?></span>
+		<span class="no-product-message alert span4"><?= t("you haven't picked any products yet.") ?></span>
 	<?}?>
 		<h3 class="span4"><?=t('Choose a product');?></h3>
+		<div class="product-list">
 			<?foreach ($availableProducts as $product) {
 				echo Loader::element('product_form',array('product'=>$product,'form'=>Loader::helper('form')),'shopify');
 			}?>
+		</div>
 </div>
 <div id="ccm-blockEditPane-options" class="ccm-blockEditPane" style="display:none">
 	<legend><?= t('Display options') ?></legend>
