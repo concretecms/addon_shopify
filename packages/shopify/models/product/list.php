@@ -1,4 +1,4 @@
 <?php defined('C5_EXECUTE') or die("Access Denied.");
-Loader::model('product', 'shopify');
+Loader::model('shopify_product', 'shopify');
 class ShopifyProductList extends ItemList {
 }
