@@ -8,6 +8,7 @@ class shopifyBasic {
 		$password = $pkg->config('password');
 		$myshopifyURL = $pkg->config('myshopifyURL');
 
+		Log::addEntry('Shopify API access','Shopify API Debug');
 		return $fh->getContents('https://'.$apikey.':'.$password.'@'.$myshopifyURL.'/admin/'.$what.'.json');
 	}
 
