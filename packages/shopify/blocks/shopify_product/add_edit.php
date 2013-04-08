@@ -1,12 +1,14 @@
 <?defined('C5_EXECUTE') or die(_("Access Denied."));
 ?>
 
-<ul id="ccm-blockEditPane-tabs" class="ccm-dialog-tabs">
+<ul id="ccm-blockEditPane-tabs" class="ccm-dialog-tabs" style="margin-left:0">
 	<li class="ccm-nav-active"><a id="ccm-blockEditPane-tab-product" href="javascript:void(0);"><?=t('Product') ?></a></li>
 	<li class=""><a id="ccm-blockEditPane-tab-options"  href="javascript:void(0);"><?=t('Data Display')?></a></li>
 </ul>
+
 <div id="ccm-blockEditPane-product" class="ccm-blockEditPane">
-	<div class="ccm-block-field-group">
+	<div id="pickedProduct">
+	</div>
 	<?if (count($localProducts)) {?>
 		<ul>
 		<?foreach($localProducts as $product) {?>
@@ -14,17 +16,15 @@
 		<?}?>
 		</ul>
 	<? } else {?>
-		<span class="alert clearfix"><?= t("you haven't picked any products yet.") ?></span>
+		<span class="alert span4"><?= t("you haven't picked any products yet.") ?></span>
 	<?}?>
-		<h4><?=t('Choose a product');?></h4>
+		<h3 class="span4"><?=t('Choose a product');?></h3>
 			<?foreach ($availableProducts as $product) {
 				echo Loader::element('product_form',array('product'=>$product,'form'=>Loader::helper('form')),'shopify');
 			}?>
-	</div>
 </div>
-<div id="ccm-blockEditPane-options" class="ccm-blockEditPane ccm-ui" style="display:none">
-	<div class="ccm-block-field-group">
-	<h4><?= t('Display options') ?></h4>
+<div id="ccm-blockEditPane-options" class="ccm-blockEditPane" style="display:none">
+	<legend><?= t('Display options') ?></legend>
 	<fieldset>
 		<div class="control-group">
 			<label class="control-label" ><?=t('Product Details')?></label>
@@ -44,12 +44,11 @@
 					<input type="checkbox" id="showPicture"<?=$showPicture ? ' checked':''?>><?=t('Product Image')?>
 				</label>
 				<label for="pictureWidth"><?=t('Width');?></label>
-				<input type="text" id="width" value="<?=$width?>">
+				<input type="text" id="width" class="input-mini" value="<?=$width?>">
 				<label for="pictureHeight"><?=t('Height');?></label>
-				<input type="text" id="pictureHeight" value="<?=$pictureHeight?>">
+				<input type="text" id="pictureHeight" class="input-mini" value="<?=$pictureHeight?>">
 			</div>
 		</div>
 	</fieldset>
-	</div>
 	</div>
 </div>

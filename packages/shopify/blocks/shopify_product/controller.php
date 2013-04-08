@@ -3,13 +3,14 @@
 class ShopifyProductBlockController extends BlockController {
 
 	protected $btTable = "btShopifyProduct";
-	protected $btInterfaceWidth = "400";
-	protected $btInterfaceHeight = "400";
+	protected $btInterfaceWidth = "530";
+	protected $btInterfaceHeight = "460";
 	protected $btCacheBlockRecord = true;
 	protected $btCacheBlockOutput = true;
 	protected $btCacheBlockOutputOnPost = true;
 	protected $btCacheBlockOutputForRegisteredUsers = true;
 	protected $btCacheBlockOutputLifetime = CACHE_LIFETIME;
+	protected $btWrapperClass = 'ccm-ui';
 
 	public function getBlockTypeName() {
 		return t('Shopify Product');

@@ -1,6 +1,16 @@
 var shopifyProductBlock ={
 	init:function(){
 		this.tabSetup();
+		this.bindProducts();
+	},
+	bindProducts: function(){
+		$('div.product').click(function(){
+			$('#pickedProduct').html($(this));
+			//do something to put the product_id in a hidden
+			//remove $(this)
+			//or just swap out #pickedproduct and this.
+			//hide the "no products" message
+		});
 	},
 	tabSetup: function(){
 		$('ul#ccm-blockEditPane-tabs li a').each( function(num,el){ 
@@ -20,5 +30,4 @@ var shopifyProductBlock ={
 
 $(function(){
 	shopifyProductBlock.init();
-	console.log('fuck');
 });
