@@ -12,12 +12,31 @@ class ShopifyProductBlockController extends BlockController {
 	protected $btCacheBlockOutputLifetime = CACHE_LIFETIME;
 	protected $btWrapperClass = 'ccm-ui';
 
+	protected $stuff = array(
+		'productID' => 0,
+		'showPicture' => true,
+		'pictureWidth' => 0,
+		'pictureHeight' => 0,
+		'showName' => true,
+		'showDescription' => 0, //fuck this shit. false is not the same as zero to adodb?
+		'showLink' => true,
+		'linkText' => 'holy fuck'
+	);
+		
 	public function getBlockTypeName() {
 		return t('Shopify Product');
 	}
 
 	public function getBlockTypeDescription() {
 		return t('Display a single product from your Shopify store.');
+	}
+
+	public function save($args) {
+		foreach($this->stuff as $key => $default) {
+			$args[$key] = (isset($args[$key]) && $args[$key] != null) ? $args[$key] : $default;
+		}
+		Log::addEntry(var_export($args,true));
+		parent::save($args);
 	}
 
 	public function add() {

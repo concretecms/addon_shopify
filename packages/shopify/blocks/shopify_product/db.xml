@@ -12,8 +12,12 @@
 			<notnull/>
 			<default value="1"/>
 		</field>
-		<field name="pictureWidth" type="I8"></field>
-		<field name="pictureHeight" type="I8"></field>
+		<field name="pictureWidth" type="I8">
+			<default value="0"/>
+		</field>
+		<field name="pictureHeight" type="I8">
+			<default value="0"/>
+		</field>
 		<field name="showName" type="I1">
 			<notnull/>
 			<default value="1"/>
@@ -26,7 +30,8 @@
 			<notnull/>
 			<default value="0"/>
 		</field>
-		<field name="linkText" type="C" size="255"></field>
+		<field name="linkText" type="C" size="255">
+		</field>
 	</table>
 </schema>
 
