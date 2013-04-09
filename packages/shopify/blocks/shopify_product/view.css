@@ -1,0 +1,28 @@
+.shopify-product-name {
+	margin-top: 18px;
+	font-weight: bolder;
+	font-size: 2.2em;
+}
+
+.shopify-product-link {
+	display:-moz-inline-stack;
+	display:inline-block;
+	zoom:1;
+	*display:inline;
+	color: white;
+	padding: 0 20px;
+	margin: 0;
+	background: #777 none;
+	font-weight: bold;
+	border: 2px solid #d8d8d8;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+
+	font-size: 28px;
+	height: 55px;
+	line-height: 55px;
+	background-color: #e8e8e8;
+	background: -moz-linear-gradient(top, #dad9f2, #c9ceed);
+	background: -webkit-gradient(linear, center top, center bottom, from(#dad9f2), to(#c9ceed));
+}
