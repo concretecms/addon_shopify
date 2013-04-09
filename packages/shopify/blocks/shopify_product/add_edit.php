@@ -7,7 +7,7 @@
 </ul>
 
 <div id="ccm-blockEditPane-product" class="ccm-blockEditPane">
-	<input type="hidden" id="productID" value="<?=is_object($product) ? $product->id : ''?>">
+	<input type="hidden" name="productID" id="productID" value="<?=is_object($product) ? $product->id : ''?>">
 	<div id="pickedProduct">
 	</div>
 	<?if (count($localProducts)) {?>
@@ -33,23 +33,28 @@
 			<label class="control-label" ><?=t('Product Details')?></label>
 			<div class="controls">
 				<label class="checkbox">
-					<input type="checkbox" id="showName"<?=$showName ? ' checked':''?>><?=t('Product Name')?>
+					<input type="checkbox" name="showName" id="showName"<?=$showName ? ' checked':''?>><?=t('Product Name')?>
 				</label>
 				<label class="checkbox">
-					<input type="checkbox" id="showDescription"<?=$showDescription ? ' checked':''?>><?=t('Product Description')?>
+					<input type="checkbox" name="showDescription" id="showDescription"<?=$showDescription ? ' checked':''?>><?=t('Product Description')?>
 				</label>
+				<label class="checkbox">
+					<input type="checkbox" id="showLink" name="showLink"<?=$showLink ? ' checked':''?>><?=t('Purchase Link')?>
+				</label>
+				<label for="linkText"><?=t('Link Text');?></label>
+				<input type="text" id="linkText" name="linkText" value="<?=$linkText?>">
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="name"><?=t('Image')?></label>
 			<div class="controls">
 				<label class="checkbox">
-					<input type="checkbox" id="showPicture"<?=$showPicture ? ' checked':''?>><?=t('Product Image')?>
+					<input type="checkbox" id="showPicture" name="showPicture"<?=$showPicture ? ' checked':''?>><?=t('Product Image')?>
 				</label>
 				<label for="pictureWidth"><?=t('Width');?></label>
-				<input type="text" id="width" class="input-mini" value="<?=$width?>">
+				<input type="text" name="pictureWidth" id="pictureWidth" class="input-mini" value="<?=$width?>">
 				<label for="pictureHeight"><?=t('Height');?></label>
-				<input type="text" id="pictureHeight" class="input-mini" value="<?=$pictureHeight?>">
+				<input type="text" name="pictureHeight" id="pictureHeight" class="input-mini" value="<?=$pictureHeight?>">
 			</div>
 		</div>
 	</fieldset>

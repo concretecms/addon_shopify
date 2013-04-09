@@ -14,7 +14,6 @@
 		</field>
 		<field name="pictureWidth" type="I8"></field>
 		<field name="pictureHeight" type="I8"></field>
-		<field name="pictureClass" type="C" size="255"/>
 		<field name="showName" type="I1">
 			<notnull/>
 			<default value="1"/>
@@ -27,7 +26,6 @@
 			<notnull/>
 			<default value="0"/>
 		</field>
-		<field name="linkClass" type="C" size="255"></field>
 		<field name="linkText" type="C" size="255"></field>
 	</table>
 </schema>
