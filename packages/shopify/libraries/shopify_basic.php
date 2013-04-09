@@ -9,6 +9,7 @@ class shopifyBasic {
 		$myshopifyURL = $pkg->config('myshopifyURL');
 
 		Log::addEntry('Shopify API access','Shopify API Debug');
+		echo 'https://'.$apikey.':'.$password.'@'.$myshopifyURL.'/admin/'.$what.'.json';
 		return $fh->getContents('https://'.$apikey.':'.$password.'@'.$myshopifyURL.'/admin/'.$what.'.json');
 	}
 
@@ -19,9 +20,10 @@ class shopifyBasic {
 
 	public static function getProductByID($id){
 		$js = Loader::helper('json');
-var_dump($js->decode(self::getJSON('products/#'.$id))->products);
+var_dump($js->decode(self::getJSON('products/#'.$id)));
+echo self::getJSON('products/#'.$id);
 exit;
-		return $js->decode(self::getJSON('products/#'.$id))->products;
+		return $js->decode(self::getJSON('products/#'.$id));
 	}
 }
 
