@@ -16,5 +16,12 @@ class shopifyBasic {
 		$js = Loader::helper('json');
 		return $js->decode(self::getJSON('products'))->products;
 	}
+
+	public static function getProductByID($id){
+		$js = Loader::helper('json');
+var_dump($js->decode(self::getJSON('products/#'.$id))->products);
+exit;
+		return $js->decode(self::getJSON('products/#'.$id))->products;
+	}
 }
 

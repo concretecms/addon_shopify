@@ -1,5 +1,6 @@
 <?defined('C5_EXECUTE') or die(_("Access Denied."));
 //var_dump($product);
+extract($etc);
 ?>
 <div class="shopify-product" id="shopify-product-<?=$product->productID?>">
 <? if($showPicture){?>

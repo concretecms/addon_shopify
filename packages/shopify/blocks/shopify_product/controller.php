@@ -53,7 +53,11 @@ class ShopifyProductBlockController extends BlockController {
 
 	public function view() {
 		Loader::library('shopify_basic','shopify');
-		$product = shopifyBasic::getProducts($this->productID);
+		$product = shopifyBasic::getProductByID($this->productID);
+		foreach ($this->stuff as $whatever => $value) {
+			$etc[$whatever] = $this->whatever;
+		}
+		$this->set('etc',$etc);
 		$this->set('product',$product);
 	}
 
