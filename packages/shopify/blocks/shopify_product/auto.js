@@ -1,6 +1,7 @@
 var shopifyProductBlock ={
 	init:function(){
 		this.tabSetup();
+		this.productBinds();
 	},
 	tabSetup: function(){
 		$('ul#ccm-blockEditPane-tabs li a').each( function(num,el){ 
@@ -9,6 +10,20 @@ var shopifyProductBlock ={
 				shopifyProductBlock.showPane(pane);
 			}
 		});		
+	},
+	productBinds: function() {
+		$('div.product').bind('click',function(){
+			if($('#pickedProduct').find($(this)).length) {
+				$('div.product-list').prepend($(this));
+				$('#productID').val('');
+				$('.no-product-message').show();
+			} else {
+				$('#productID').val($(this).attr('product-id'));
+				$('div.product-list').prepend($('#pickedProduct').find('div.product'));
+				$('#pickedProduct').html($(this));
+				$('.no-product-message').hide();
+			}
+		});
 	},
 	showPane:function(pane){
 		$('ul#ccm-blockEditPane-tabs li').each(function(num,el){ $(el).removeClass('ccm-nav-active') });
@@ -20,20 +35,10 @@ var shopifyProductBlock ={
 
 $(function(){
 	shopifyProductBlock.init();
-	$('div.product').bind('click',function(){
-		if($('#pickedProduct').find($(this)).length) {
-			$('div.product-list').prepend($(this));
-			$('#productID').val('');
-			$('.no-product-message').show();
-		} else {
-			$('#productID').val($(this).attr('product-id'));
-			$('div.product-list').prepend($('#pickedProduct').find('div.product'));
-			$('#pickedProduct').html($(this));
-			$('.no-product-message').hide();
-		}
+	$('#collection').change(function(){
+		$.get($('#action-urls').attr('product-list')+'&collectionID='+$('#collection').val(),function(data){
+			$('div.product-list').html(data);
+			shopifyProductBlock.productBinds();
+		});
 	});
-	//$('#collections').change(function(){
-		////replace html with action_categories
-		////re-bind click events
-	//});
 });

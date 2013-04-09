@@ -1,13 +1,10 @@
 <?defined('C5_EXECUTE') or die(_("Access Denied."));
 
-echo $this->action('product_list').'&collectionID=0';
+//echo $this->action('product_list').'&collectionID=0';
 ?>
 
 
-
-<script type="text/javascript">
-	var CCM_SHOPIFY_PRODUCTS = "blablabla";
-</script>
+<a id="action-urls" product-list="<?=$this->action('product_list')?>"></a>
 
 <ul id="ccm-blockEditPane-tabs" class="ccm-dialog-tabs" style="margin-left:0">
 	<li class="ccm-nav-active"><a id="ccm-blockEditPane-tab-product" href="javascript:void(0);"><?=t('Product') ?></a></li>

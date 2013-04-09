@@ -85,7 +85,8 @@ class ShopifyProductBlockController extends BlockController {
 		//exit;
 	}
 
-	public function action_product_list($collectionID) {
+	public function action_product_list() {
+		$collectionID = $_GET['collectionID'];
 		Loader::library('shopify_basic','shopify');
 		if($collectionID == 0) {
 			$products = shopifyBasic::getProducts();
