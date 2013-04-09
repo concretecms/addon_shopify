@@ -1,35 +1,6 @@
 var shopifyProductBlock ={
 	init:function(){
 		this.tabSetup();
-		//this.bindProducts();
-	},
-	productClick: function(){
-		//console.log($(this));
-		$(this).removeClass('product');
-		$(this).addClass('picked-product');
-		if($('#pickedProduct').html()) {
-			$('div.product-list').prepend($('#pickedProduct').html());
-		}
-		$('#pickedProduct').html($(this));
-		$('#productID').val($(this).attr('product-id'));
-		$('.no-product-message').hide();
-		$(this).unbind('click');
-		$(this).bind('click',function(){shopifyProductBlock.pickedProductClick.call(this)});
-	},
-	pickedProductClick: function(){
-		$(this).removeClass('picked-product');
-		$(this).addClass('product');
-		$('div.product-list').prepend($(this));
-		$(this).remove();
-		if(!$('#pickedProduct').html()) {
-			$('.no-product-message').show();
-		}
-		$(this).unbind('click');
-		$(this).bind('click',function(){shopifyProductBlock.productClick.call(this)});
-	},
-	bindProducts: function(){
-		$('div.product').bind('click',shopifyProductBlock.productClick.call(this));
-		$('div.picked-product').bind('click',shopifyProductBlock.pickedProductClick.call(this));
 	},
 	tabSetup: function(){
 		$('ul#ccm-blockEditPane-tabs li a').each( function(num,el){ 
@@ -49,6 +20,16 @@ var shopifyProductBlock ={
 
 $(function(){
 	shopifyProductBlock.init();
-	$('div.product').bind('click',function(){shopifyProductBlock.productClick.call(this)});
-	$('div.picked-product').bind('click',function(){shopifyProductBlock.pickedProductClick.call(this)});
+	$('div.product').bind('click',function(){
+		if($('#pickedProduct').find($(this)).length) {
+			$('div.product-list').prepend($(this));
+			$('#productID').val('');
+			$('.no-product-message').show();
+		} else {
+			$('#productID').val($(this).attr('product-id'));
+			$('div.product-list').prepend($('#pickedProduct').find('div.product'));
+			$('#pickedProduct').html($(this));
+			$('.no-product-message').hide();
+		}
+	});
 });
