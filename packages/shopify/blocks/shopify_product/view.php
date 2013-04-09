@@ -1,5 +1,10 @@
 <?defined('C5_EXECUTE') or die(_("Access Denied."));
-var_dump($product);
-//var_dump($etc);
-
-Loader::element('shopify_product',array('product'=>$product,'etc'=>$etc),'shopify');
+Loader::element('shopify_product',array('product'=>$product,
+	'showPicture'=>$showPicture,
+	'imgSrc'=>$imgSrc,
+	'showName'=>$showName,
+	'showDescription'=>$showDescription,
+	'showLink'=>$showLink,
+	'linkText'=>$linkText,
+	'linkURL'=>$linkURL
+	),'shopify');

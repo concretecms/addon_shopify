@@ -7,21 +7,31 @@
 </ul>
 
 <div id="ccm-blockEditPane-product" class="ccm-blockEditPane">
-	<input type="hidden" name="productID" id="productID" value="<?=is_object($product) ? $product->id : ''?>">
+	<input type="hidden" name="productID" id="productID" value="<?=is_object($chosenProduct) ? $chosenProduct->id : ''?>">
 	<div id="pickedProduct">
+	<?$style = '';
+	 if(is_object($chosenProduct)) {
+		echo Loader::element('product_form',array('product'=>$chosenProduct,'form'=>Loader::helper('form')),'shopify');
+		$style = ' style="display:none"';
+	}?>
 	</div>
+	<span class="no-product-message alert span4"<?=$style?>><?= t("No product selected.") ?></span>
 	<?if (count($localProducts)) {?>
 		<ul>
 		<?foreach($localProducts as $product) {?>
 			<li><?=$product->getName()?></li>
 		<?}?>
 		</ul>
-	<? } else {?>
-		<span class="no-product-message alert span4"><?= t("you haven't picked any products yet.") ?></span>
-	<?}?>
+	<? }?>
 		<h3 class="span4"><?=t('Choose a product');?></h3>
 		<div class="product-list">
-			<?foreach ($availableProducts as $product) {
+			<?if (is_object($chosenProduct)) {
+				foreach ($availableProducts as $product) {
+					if($chosenProduct->id != $product->id) {
+							echo Loader::element('product_form',array('product'=>$product,'form'=>Loader::helper('form')),'shopify');
+					}
+				}
+			} else foreach ($availableProducts as $product) {
 				echo Loader::element('product_form',array('product'=>$product,'form'=>Loader::helper('form')),'shopify');
 			}?>
 		</div>

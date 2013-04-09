@@ -20,7 +20,7 @@ class ShopifyProductBlockController extends BlockController {
 		'showName' => true,
 		'showDescription' => 0, //fuck this shit. false is not the same as zero to adodb?
 		'showLink' => true,
-		'linkText' => 'holy fuck'
+		'linkText' => 'Buy This'
 	);
 		
 	public function getBlockTypeName() {
@@ -48,17 +48,35 @@ class ShopifyProductBlockController extends BlockController {
 
 	public function edit() {
 		//$localProducts = $this->getProducts(); //nothing yet
-		$this->add();
+		Loader::library('shopify_basic','shopify');
+		$availableProducts = shopifyBasic::getProducts();
+		$chosenProduct = shopifyBasic::getProductByID($this->productID);
+		$this->set('availableProducts',$availableProducts);
+		$this->set('chosenProduct',$chosenProduct);
 	}
 
 	public function view() {
+		$fh = Loader::helper('file');
+		$ih = Loader::helper('image');
+		$pkg = Package::getByHandle('shopify');
 		Loader::library('shopify_basic','shopify');
 		$product = shopifyBasic::getProductByID($this->productID);
-		foreach ($this->stuff as $whatever => $value) {
-			$etc[$whatever] = $this->{$whatever};
-		}
-		$this->set('etc',$etc);
+		$image = $fh->getContents($product->images[0]->src);
+		//var_dump($product->images[0]->src);
+		//var_dump($image);
+		//exit;
+		//$thumb = $ih->getThumbnail($product->images[0]->src,$pictureWidth,$pictureHeight);
+		//$this->set('imgSrc',$thumb->src);
+		//foreach ($this->stuff as $whatever => $value) {
+			//$etc[$whatever] = $this->{$whatever};
+		//}
+		//$this->set('etc',$etc);
+		$this->set('imgSrc',$product->images[0]->src); //wack. Need to figure out how to cache / temp file this somehow
+		//looks like copying create out of the image helper to something else would work.
+		$this->set('linkURL',$linkURL);
 		$this->set('product',$product);
+		//var_dump($product);
+		//exit;
 	}
 
 	public function getProducts() {
