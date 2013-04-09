@@ -55,7 +55,7 @@ class ShopifyProductBlockController extends BlockController {
 		Loader::library('shopify_basic','shopify');
 		$product = shopifyBasic::getProductByID($this->productID);
 		foreach ($this->stuff as $whatever => $value) {
-			$etc[$whatever] = $this->whatever;
+			$etc[$whatever] = $this->{$whatever};
 		}
 		$this->set('etc',$etc);
 		$this->set('product',$product);
