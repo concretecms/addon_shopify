@@ -22,11 +22,19 @@
 			<li><?=$product->getName()?></li>
 		<?}?>
 		</ul>
-	<? }?>
+	<? }
+		if (count($collections) > 1) { ?>
+			<select name="collection" id="collection">
+				<option value="0"><?= t('All Collections') ?></option>
+			<?foreach($collections as $collection) {?>
+				<option value="<?=$collection->id?>"><?=$collection->title?></option>
+			<?}?>
+			</select>
+		<?}?>
 		<h3 class="span4"><?=t('Choose a product');?></h3>
 		<div class="product-list">
 			<?if (is_object($chosenProduct)) {
-				foreach ($availableProducts as $product) {
+				foreach ($availableProducts as $product) { //yeah this is lame.
 					if($chosenProduct->id != $product->id) {
 							echo Loader::element('product_form',array('product'=>$product,'form'=>Loader::helper('form')),'shopify');
 					}

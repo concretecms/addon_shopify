@@ -43,15 +43,20 @@ class ShopifyProductBlockController extends BlockController {
 	public function add() {
 		Loader::library('shopify_basic','shopify');
 		$availableProducts = shopifyBasic::getProducts();
+		$collections = shopifyBasic::getCollections();
 		$this->set('availableProducts',$availableProducts);
+		$this->set('collections',$collections);
+		
 	}
 
 	public function edit() {
 		//$localProducts = $this->getProducts(); //nothing yet
 		Loader::library('shopify_basic','shopify');
 		$availableProducts = shopifyBasic::getProducts();
+		$collections = shopifyBasic::getCollections();
 		$chosenProduct = shopifyBasic::getProductByID($this->productID);
 		$this->set('availableProducts',$availableProducts);
+		$this->set('collections',$collections);
 		$this->set('chosenProduct',$chosenProduct);
 	}
 
@@ -60,6 +65,7 @@ class ShopifyProductBlockController extends BlockController {
 		$ih = Loader::helper('image');
 		$pkg = Package::getByHandle('shopify');
 		Loader::library('shopify_basic','shopify');
+
 		$product = shopifyBasic::getProductByID($this->productID);
 		$image = $fh->getContents($product->images[0]->src);
 		//var_dump($product->images[0]->src);
@@ -73,13 +79,29 @@ class ShopifyProductBlockController extends BlockController {
 		//$this->set('etc',$etc);
 		$this->set('imgSrc',$product->images[0]->src); //wack. Need to figure out how to cache / temp file this somehow
 		//looks like copying create out of the image helper to something else would work.
+		$linkURL = 'http://'.$pkg->config('myshopifyURL').'/products/'.$product->handle.'/';
 		$this->set('linkURL',$linkURL);
 		$this->set('product',$product);
 		//var_dump($product);
 		//exit;
 	}
 
+	public function action_product_list($collectionID) {
+		Loader::library('shopify_basic','shopify');
+		if($collectionID == 0) {
+			$products = shopifyBasic::getProducts();
+		} else {
+			$products = shopifyBasic::getProductsForCollection($collectionID);
+		}
+
+		foreach($products as $product) {
+			echo Loader::element('product_form',array('product'=>$product,'form'=>Loader::helper('form')),'shopify');
+		}
+		exit;
+	}
+
 	public function getProducts() {
 		//this should get whatever product data we're keeping locally.
+		//which is none right now
 	}
 }
