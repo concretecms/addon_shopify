@@ -34,6 +34,7 @@ class ShopifyProductBlockController extends BlockController {
 	public function save($args) {
 		foreach($this->stuff as $key => $default) {
 			$args[$key] = (isset($args[$key]) && $args[$key] != null) ? $args[$key] : $default;
+			$args[$key] = $args[$key] === 'on' ? true : $args[$key];
 		}
 		Log::addEntry(var_export($args,true));
 		parent::save($args);
@@ -51,7 +52,8 @@ class ShopifyProductBlockController extends BlockController {
 	}
 
 	public function view() {
-		$product = shopifyBasic::getProducts($this->productID());
+		Loader::library('shopify_basic','shopify');
+		$product = shopifyBasic::getProducts($this->productID);
 		$this->set('product',$product);
 	}
 
