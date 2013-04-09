@@ -32,8 +32,8 @@ $(function(){
 			$('.no-product-message').hide();
 		}
 	});
-	$('#collections').change(function(){
-		//replace html with action_categories
-		//re-bind click events
-	});
+	//$('#collections').change(function(){
+		////replace html with action_categories
+		////re-bind click events
+	//});
 });

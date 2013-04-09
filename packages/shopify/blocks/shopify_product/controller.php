@@ -18,7 +18,7 @@ class ShopifyProductBlockController extends BlockController {
 		'pictureWidth' => 0,
 		'pictureHeight' => 0,
 		'showName' => true,
-		'showDescription' => 0, //fuck this shit. false is not the same as zero to adodb?
+		'showDescription' => 0, //false is not the same as zero to adodb?
 		'showLink' => true,
 		'linkText' => 'Buy This'
 	);
@@ -46,7 +46,6 @@ class ShopifyProductBlockController extends BlockController {
 		$collections = shopifyBasic::getCollections();
 		$this->set('availableProducts',$availableProducts);
 		$this->set('collections',$collections);
-		
 	}
 
 	public function edit() {
@@ -93,7 +92,6 @@ class ShopifyProductBlockController extends BlockController {
 		} else {
 			$products = shopifyBasic::getProductsForCollection($collectionID);
 		}
-
 		foreach($products as $product) {
 			echo Loader::element('product_form',array('product'=>$product,'form'=>Loader::helper('form')),'shopify');
 		}
