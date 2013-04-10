@@ -9,7 +9,9 @@
 		<h4><?=$product->title?></h5>
 		<p><?=strip_tags($product->body_html)?></p>
 	</div>
-	<button class="btn btn-danger pull-right add-product"><?=t('Remove')?></button>
-	<button class="btn btn-btn-primary pull-right remove-product"><?=t('Choose Product')?></button>
+	<span class="span6">
+		<button class="btn btn-danger pull-right remove-product" style="margin-right:16px"><?=t('Remove')?></button>
+		<button class="btn btn-primary pull-right add-product" style="margin-right:16px"><?=t('Choose Product')?></button>
+	</span>
 </div>
 

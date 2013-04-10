@@ -20,8 +20,11 @@ var shopifyProductBlock ={
 		$('button.add-product').click(function(e) {
 			e.preventDefault();
 			$('#productID').val($(this).attr('product-id'));
-			$('div.product-list').prepend($('#pickedProduct').find('div.product'));//fix the button
-			$('#pickedProduct').html($(this).parent());
+			var old = $('#pickedProduct').find('div.product');
+			old.find('button.remove-product').hide();
+			old.find('button.add-product').show();
+			$('div.product-list').prepend(old);//fix the button
+			$('#pickedProduct').html($(this).parent().parent()); //this is garbage
 			$('.no-product-message').hide();
 			$(this).prev().show();
 			$(this).hide();
@@ -29,7 +32,7 @@ var shopifyProductBlock ={
 
 		$('button.remove-product').click(function(e) {
 			e.preventDefault();
-			$('div.product-list').prepend($(this).parent());
+			$('div.product-list').prepend($(this).parent().parent()); //avoid parent parent
 			$('#productID').val('');
 			$('.no-product-message').show();
 			$(this).next().show();

@@ -1,9 +1,8 @@
 <?defined('C5_EXECUTE') or die(_("Access Denied."));
 
 //echo $this->action('product_list').'&collectionID=0';
+	//button[class*='product-'] {
 ?>
-
-
 <a id="action-urls" product-list="<?=$this->action('product_list')?>"></a>
 
 <ul id="ccm-blockEditPane-tabs" class="ccm-dialog-tabs" style="margin-left:0">

@@ -36,11 +36,20 @@ class ShopifyProductBlockController extends BlockController {
 			$args[$key] = (isset($args[$key]) && $args[$key] != null) ? $args[$key] : $default;
 			$args[$key] = $args[$key] === 'on' ? true : $args[$key];
 		}
-		Log::addEntry(var_export($args,true));
 		parent::save($args);
 	}
 
+	public function add_edit() {
+		$uh = Loader::helper('concrete/urls');
+		$hh = Loader::helper('html');
+		$bt = BlockType::getByHandle('shopify_product');
+
+		//this does absolutely nothing
+		$this->addHeaderItem($hh->css($uh->getBlockTypeAssetsURL($bt,'auto.css')));
+	}
+
 	public function add() {
+		$this->add_edit();
 		Loader::library('shopify_basic','shopify');
 		$availableProducts = shopifyBasic::getProducts();
 		$collections = shopifyBasic::getCollections();
@@ -49,6 +58,7 @@ class ShopifyProductBlockController extends BlockController {
 	}
 
 	public function edit() {
+		$this->add_edit();
 		//$localProducts = $this->getProducts(); //nothing yet
 		Loader::library('shopify_basic','shopify');
 		$availableProducts = shopifyBasic::getProducts();
