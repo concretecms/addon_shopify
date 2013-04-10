@@ -17,8 +17,8 @@ class ShopifyPackage extends Package {
 	public function install() {
 		$pkg = parent::install();
 		Loader::model('single_page');
-		if(Page::getByPath('/dashboard/shopify')->getCollectionID() <= 0) {
-			SinglePage::add('/dashboard/shopify',$pkg);
+		if(Page::getByPath('/dashboard/shopify/configure')->getCollectionID() <= 0) {
+			SinglePage::add('/dashboard/shopify/configure',$pkg);
 		}
 		BlockType::installBlockTypeFromPackage('shopify_product', $pkg);	
 	}

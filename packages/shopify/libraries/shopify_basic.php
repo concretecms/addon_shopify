@@ -12,6 +12,12 @@ class shopifyBasic {
 		return $fh->getContents('https://'.$apikey.':'.$password.'@'.$myshopifyURL.'/admin/'.$what.($suffix?'.json':''));
 	}
 
+	public static function testConnection() {
+		$js = Loader::helper('json');
+		$r = $js->decode(self::getJSON('shop'));
+		return (!empty($r->shop->myshopify_domain));
+	}
+
 	public static function getProductByID($id){
 		$js = Loader::helper('json');
 		return $js->decode(self::getJSON('products/'.$id))->product;
