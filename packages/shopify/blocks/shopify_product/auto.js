@@ -12,6 +12,20 @@ var shopifyProductBlock ={
 		});		
 	},
 	productBinds: function() {
+		$('.product-list button.add-product').show();
+		$('.product-list button.remove-product').hide();
+		$('#pickedProduct button.add-product').hide();
+		$('#pickedProduct button.remove-product').show();
+
+		$('button.add-product').click(function(e) {
+			e.preventDefault();
+			$('#productID').val($(this).attr('product-id'));
+			$('div.product-list').prepend($('#pickedProduct').find('div.product'));
+			$('#pickedProduct').html($(this).parent());
+			$('.no-product-message').hide();
+		});
+
+
 		$('div.product').bind('click',function(){
 			if($('#pickedProduct').find($(this)).length) {
 				$('div.product-list').prepend($(this));
