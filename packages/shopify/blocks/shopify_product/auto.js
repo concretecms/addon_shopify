@@ -20,23 +20,20 @@ var shopifyProductBlock ={
 		$('button.add-product').click(function(e) {
 			e.preventDefault();
 			$('#productID').val($(this).attr('product-id'));
-			$('div.product-list').prepend($('#pickedProduct').find('div.product'));
+			$('div.product-list').prepend($('#pickedProduct').find('div.product'));//fix the button
 			$('#pickedProduct').html($(this).parent());
 			$('.no-product-message').hide();
+			$(this).prev().show();
+			$(this).hide();
 		});
 
-
-		$('div.product').bind('click',function(){
-			if($('#pickedProduct').find($(this)).length) {
-				$('div.product-list').prepend($(this));
-				$('#productID').val('');
-				$('.no-product-message').show();
-			} else {
-				$('#productID').val($(this).attr('product-id'));
-				$('div.product-list').prepend($('#pickedProduct').find('div.product'));
-				$('#pickedProduct').html($(this));
-				$('.no-product-message').hide();
-			}
+		$('button.remove-product').click(function(e) {
+			e.preventDefault();
+			$('div.product-list').prepend($(this).parent());
+			$('#productID').val('');
+			$('.no-product-message').show();
+			$(this).next().show();
+			$(this).hide();
 		});
 	},
 	showPane:function(pane){
