@@ -2,6 +2,7 @@ var shopifyProductBlock ={
 	init:function(){
 		this.tabSetup();
 		this.productBinds();
+		//this.imageScales();
 	},
 	tabSetup: function(){
 		$('ul#ccm-blockEditPane-tabs li a').each( function(num,el){ 
@@ -11,9 +12,37 @@ var shopifyProductBlock ={
 			}
 		});		
 	},
+	imageScales: function() {
+		//this doesn't fucking work.. The divs seem to be whatever size they want to be.
+		console.log('wake the fuck up');
+		var $images = $('.scale-image img');
+		$images.each(function(){
+			var container = $(this).parent();
+			var widthDiff =  $(this).width() - container.innerHeight();
+			var heightDiff =  $(this).height() - container.innerWidth();
+			//console.log($(this).parent());
+			console.log("width:"+widthDiff+" height:"+heightDiff);
+
+			//var heightRatio = container.innerHeight() / $(this).height();
+			//var widthRatio = container.innerwidth() / $(this).width();
+
+			////direction = widthDiff - heightDiff;
+			//if (widthDiff > heightDiff) {
+				//$(this).width(container.width());
+				//$(this).css('margin-top',-1*(heightDiff*heightRatio/2));
+			//} else {
+				//$(this).height(container.height());
+				//$(this).css('margin-left',-1*(widthDiff*widthRatio/2));
+			//}
+
+
+			//width > container or height > container
+
+		});
+	},
 	productBinds: function() {
-		$('.product-list button.add-product').show();
-		$('.product-list button.remove-product').hide();
+		$('div.product-list button.add-product').show();
+		$('div.product-list button.remove-product').hide();
 		$('#pickedProduct button.add-product').hide();
 		$('#pickedProduct button.remove-product').show();
 

@@ -12,6 +12,7 @@
 
 <div id="ccm-blockEditPane-product" class="ccm-blockEditPane">
 	<input type="hidden" name="productID" id="productID" value="<?=is_object($chosenProduct) ? $chosenProduct->id : ''?>">
+	<h3 class = "span6"><?= t('Featured Product:') ?></h3>
 	<div id="pickedProduct">
 	<?$style = '';
 	 if(is_object($chosenProduct)) {

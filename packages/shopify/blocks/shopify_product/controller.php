@@ -39,7 +39,17 @@ class ShopifyProductBlockController extends BlockController {
 		parent::save($args);
 	}
 
+	public function add_edit() {
+		$uh = Loader::helper('concrete/urls');
+		$hh = Loader::helper('html');
+		$bt = BlockType::getByHandle('shopify_product');
+
+		//this does absolutely nothing
+		$this->addHeaderItem($hh->css($uh->getBlockTypeAssetsURL($bt,'auto.css')));
+	}
+
 	public function add() {
+		$this->add_edit();
 		Loader::library('shopify_basic','shopify');
 		$availableProducts = shopifyBasic::getProducts();
 		$collections = shopifyBasic::getCollections();
@@ -48,6 +58,7 @@ class ShopifyProductBlockController extends BlockController {
 	}
 
 	public function edit() {
+		$this->add_edit();
 		//$localProducts = $this->getProducts(); //nothing yet
 		Loader::library('shopify_basic','shopify');
 		$availableProducts = shopifyBasic::getProducts();
