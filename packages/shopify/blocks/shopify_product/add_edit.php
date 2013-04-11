@@ -16,7 +16,7 @@
 	<div id="pickedProduct">
 	<?$style = '';
 	 if(is_object($chosenProduct)) {
-		echo Loader::element('product_form',array('product'=>$chosenProduct,'form'=>Loader::helper('form')),'shopify');
+		echo Loader::element('product_form',array('product'=>$chosenProduct,'ih'=>Loader::helper('image')),'shopify');
 		$style = ' style="display:none"';
 	}?>
 	</div>
@@ -27,8 +27,9 @@
 			<li><?=$product->getName()?></li>
 		<?}?>
 		</ul>
-	<? }
-		if (count($collections) > 1) { ?>
+	<? }?>
+		<div class="clearfix">
+		<?if (count($collections) > 1) { ?>
 			<select name="collection" id="collection">
 				<option value="0"><?= t('All Collections') ?></option>
 			<?foreach($collections as $collection) {?>
@@ -37,15 +38,16 @@
 			</select>
 		<?}?>
 		<h3 class="span4"><?=t('Choose a product');?></h3>
-		<div class="product-list">
+		</div>
+		<div class="product-list clearfix">
 			<?if (is_object($chosenProduct)) {
 				foreach ($availableProducts as $product) { //yeah this is lame.
 					if($chosenProduct->id != $product->id) {
-							echo Loader::element('product_form',array('product'=>$product,'form'=>Loader::helper('form')),'shopify');
+							echo Loader::element('product_form',array('product'=>$product,'ih'=>Loader::helper('image')),'shopify');
 					}
 				}
 			} else foreach ($availableProducts as $product) {
-				echo Loader::element('product_form',array('product'=>$product,'form'=>Loader::helper('form')),'shopify');
+				echo Loader::element('product_form',array('product'=>$product,'ih'=>Loader::helper('image')),'shopify');
 			}?>
 		</div>
 </div>
@@ -74,10 +76,12 @@
 				<label class="checkbox">
 					<input type="checkbox" id="showPicture" name="showPicture"<?=$showPicture ? ' checked':''?>><?=t('Product Image')?>
 				</label>
-				<label for="pictureWidth"><?=t('Width');?></label>
-				<input type="text" name="pictureWidth" id="pictureWidth" class="input-mini" value="<?=$width?>">
-				<label for="pictureHeight"><?=t('Height');?></label>
-				<input type="text" name="pictureHeight" id="pictureHeight" class="input-mini" value="<?=$pictureHeight?>">
+				<div class="input-append span3 clearfix">
+					<input type="text" name="pictureWidth" id="pictureWidth" class="input-mini" value="<?=$pictureWidth?>"><span class="add-on"><?= t('px') ?></span><span class="help-inline"><?=t('Width');?></span>
+				</div>
+				<div class="input-append span3 clearfix">
+					<input type="text" name="pictureHeight" id="pictureHeight" class="input-mini" value="<?=$pictureHeight?>"><span class="add-on"><?= t('px') ?></span><span class="help-inline"><?=t('Height');?></span>
+				</div>
 			</div>
 		</div>
 	</fieldset>

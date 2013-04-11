@@ -14,13 +14,15 @@ var shopifyProductBlock ={
 	},
 	imageScales: function() {
 		//this doesn't fucking work.. The divs seem to be whatever size they want to be.
-		console.log('wake the fuck up');
+		console.log("COME ON");
 		var $images = $('.scale-image img');
 		$images.each(function(){
-			var container = $(this).parent();
-			var widthDiff =  $(this).width() - container.innerHeight();
-			var heightDiff =  $(this).height() - container.innerWidth();
-			//console.log($(this).parent());
+			var widthTarget = $(this).attr('desired-width');
+			var heightTarget = $(this).attr('desired-height');
+
+			widthDiff = $(this).width() - widthTarget;
+			heightDiff = $(this).height() - heightTarget;
+
 			console.log("width:"+widthDiff+" height:"+heightDiff);
 
 			//var heightRatio = container.innerHeight() / $(this).height();
@@ -78,6 +80,8 @@ var shopifyProductBlock ={
 
 $(function(){
 	shopifyProductBlock.init();
+
+	//$('div.product-list').imagesLoaded(shopifyProductBlock.imageScales());
 	$('#collection').change(function(){
 		$.get($('#action-urls').attr('product-list')+'&collectionID='+$('#collection').val(),function(data){
 			$('div.product-list').html(data);

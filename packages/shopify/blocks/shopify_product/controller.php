@@ -39,13 +39,21 @@ class ShopifyProductBlockController extends BlockController {
 		parent::save($args);
 	}
 
+	public function on_before_render(){
+		$uh = Loader::helper('concrete/urls');
+		$hh = Loader::helper('html');
+		$bt = BlockType::getByHandle('shopify_product');
+
+		$this->addHeaderItem($hh->javascript($uh->getBlockTypeAssetsURL($bt,'js/jquery.imagesloaded.min.js')));
+	}
+
 	public function add_edit() {
 		$uh = Loader::helper('concrete/urls');
 		$hh = Loader::helper('html');
 		$bt = BlockType::getByHandle('shopify_product');
 
-		//this does absolutely nothing
 		$this->addHeaderItem($hh->css($uh->getBlockTypeAssetsURL($bt,'auto.css')));
+		$this->addHeaderItem($hh->javascript($uh->getBlockTypeAssetsURL($bt,'js/jquery.imagesloaded.min.js')));
 	}
 
 	public function add() {
@@ -92,6 +100,7 @@ class ShopifyProductBlockController extends BlockController {
 		$this->set('linkURL',$linkURL);
 		$this->set('product',$product);
 		//var_dump($product);
+
 		//exit;
 	}
 
@@ -104,7 +113,7 @@ class ShopifyProductBlockController extends BlockController {
 			$products = shopifyBasic::getProductsForCollection($collectionID);
 		}
 		foreach($products as $product) {
-			echo Loader::element('product_form',array('product'=>$product,'form'=>Loader::helper('form')),'shopify');
+			echo Loader::element('product_form',array('product'=>$product,'ih'=>Loader::helper('image')),'shopify');
 		}
 		exit;
 	}
