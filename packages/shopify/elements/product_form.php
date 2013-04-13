@@ -1,14 +1,9 @@
 <?defined('C5_EXECUTE') or die(_("Access Denied."));
-//var_dump($product);
-//var_dump(getimagesize($product->images[0]->src));
-$thumb = $ih->getThumbnail($product->images[0]->src,140,140,true);
-rename(DIR_BASE.$thumb->src,strstr(DIR_BASE.$thumb->src,'?',true));
-$thumb->src = strstr($thumb->src,'?',true);
 
 ?>
-<div class="well span6 product">
+<div class="well clearfix product">
 	<div class="span2 scale-image" style="overflow:hidden">
-		<img class="img-rounded" src="<?=$thumb->src?>">
+		<img class="img-rounded" src="<?=$product->images[0]->src?>" style="max-width: 140px; max-height: 140px">
 	</div>
 	<div class="span3">
 		<h4><?=$product->title?></h5>

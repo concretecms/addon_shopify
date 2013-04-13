@@ -12,7 +12,7 @@
 
 <div id="ccm-blockEditPane-product" class="ccm-blockEditPane">
 	<input type="hidden" name="productID" id="productID" value="<?=is_object($chosenProduct) ? $chosenProduct->id : ''?>">
-	<h3 class = "span6"><?= t('Featured Product:') ?></h3>
+	<h3><?= t('Featured Product:') ?></h3>
 	<div id="pickedProduct">
 	<?$style = '';
 	 if(is_object($chosenProduct)) {
@@ -20,36 +20,49 @@
 		$style = ' style="display:none"';
 	}?>
 	</div>
-	<span class="no-product-message alert span4"<?=$style?>><?= t("No product selected.") ?></span>
-	<?if (count($localProducts)) {?>
-		<ul>
-		<?foreach($localProducts as $product) {?>
-			<li><?=$product->getName()?></li>
-		<?}?>
-		</ul>
-	<? }?>
-		<div class="clearfix">
-		<?if (count($collections) > 1) { ?>
-			<select name="collection" id="collection">
-				<option value="0"><?= t('All Collections') ?></option>
-			<?foreach($collections as $collection) {?>
-				<option value="<?=$collection->id?>"><?=$collection->title?></option>
+	<div class="no-product-message alert"<?=$style?>><?= t("No product selected.") ?></div>
+
+	<div class="clearfix">
+
+		<div class="search-form">
+
+			<h3><?=t('Choose a product');?></h3>
+
+			<input type="search" data-input="shopify-keywords" name="keywords" class="span2" placeholder="<?=t('Search')?>" />
+
+			<select data-select="shopify-type" class="span2">
+				<option value=""><?= t('All Products') ?></option>
+			<?foreach($types as $type) {?>
+				<option value="<?=$type?>"><?=$type?></option>
 			<?}?>
 			</select>
-		<?}?>
-		<h3 class="span4"><?=t('Choose a product');?></h3>
+
+			<button type="button" class="btn" data-submit="shopify-search"><?=t('Search')?></button>
+
+			<img src="<?=ASSETS_URL_IMAGES?>/loader_intelligent_search.gif" width="43" height="11" class="shopify-loader" style="display: none" />
 		</div>
-		<div class="product-list clearfix">
-			<?if (is_object($chosenProduct)) {
-				foreach ($availableProducts as $product) { //yeah this is lame.
-					if($chosenProduct->id != $product->id) {
-							echo Loader::element('product_form',array('product'=>$product,'ih'=>Loader::helper('image')),'shopify');
-					}
+
+		<div class="search-form-results" style="margin-top: 10px">
+			<div class="alert alert-info"><?=t('Search for products using the form below.')?></div>
+		</div>
+	</div>
+
+	<? /*
+
+	<div class="clearfix">
+	</div>
+	<div class="product-list clearfix">
+		<?if (is_object($chosenProduct)) {
+			foreach ($availableProducts as $product) { //yeah this is lame.
+				if($chosenProduct->id != $product->id) {
+						echo Loader::element('product_form',array('product'=>$product,'ih'=>Loader::helper('image')),'shopify');
 				}
-			} else foreach ($availableProducts as $product) {
-				echo Loader::element('product_form',array('product'=>$product,'ih'=>Loader::helper('image')),'shopify');
-			}?>
-		</div>
+			}
+		} else foreach ($availableProducts as $product) {
+			echo Loader::element('product_form',array('product'=>$product,'ih'=>Loader::helper('image')),'shopify');
+		}?>
+	</div>
+		*/ ?>
 </div>
 <div id="ccm-blockEditPane-options" class="ccm-blockEditPane" style="display:none">
 	<legend><?= t('Display options') ?></legend>
@@ -87,3 +100,41 @@
 	</fieldset>
 	</div>
 </div>
+
+<script type="text/javascript">
+
+ccm_shopifySearch = function() {
+	$('.shopify-loader').show();
+	var req = '<?=Loader::helper("concrete/urls")->getToolsURL("products/search", "shopify")?>';
+	$.ajax({
+		dataType: 'html',
+		type: 'post',
+		url: req,
+		data: [{
+			name: 'keywords',
+			value: $('input[data-input=shopify-keywords]').val()
+		}, {
+			name: 'type',
+			value: $('select[data-select=shopify-type]').val()
+		}],
+		success: function(resp) {
+			$('.search-form-results').html(resp);
+		},
+		complete: function() {
+			$('.shopify-loader').hide();
+		}
+	});
+}
+
+$(function() {
+	$('button[data-submit=shopify-search]').on('click', function() {
+		ccm_shopifySearch();
+	});
+	$('input[data-input=shopify-keywords]').on('keydown', function(e) {
+		if (e.keyCode == 13) {
+			e.preventDefault();
+			ccm_shopifySearch();
+		}
+	});
+});
+</script>

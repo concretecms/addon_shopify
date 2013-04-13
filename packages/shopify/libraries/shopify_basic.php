@@ -28,9 +28,47 @@ class shopifyBasic {
 		return $js->decode(self::getJSON('products'))->products;
 	}
 
+	public static function searchProducts($keywords, $productType = false) {
+		$fh = Loader::helper('file');
+		$pkg = Package::getByHandle('shopify');
+		$apikey = $pkg->config('apikey');
+		$password = $pkg->config('password');
+		$myshopifyURL = $pkg->config('myshopifyURL');
+		if ($keywords) {
+			$url = 'https://'.$apikey.':'.$password.'@'.$myshopifyURL.'/admin/products/search.json?order=title+ASC&query=' . $keywords . '*';
+			if ($productType) {
+				$url .= '+product_type:' . $productType;
+			}
+		} else if ($productType) {
+			$url = 'https://'.$apikey.':'.$password.'@'.$myshopifyURL.'/admin/products.json?order=title+ASC&product_type=' . $productType;
+		}
+		$js = Loader::helper('json');
+		return $js->decode($fh->getContents($url))->products;
+	}
+
 	public static function getCollections(){
 		$js = Loader::helper('json');
 		return $js->decode(self::getJSON('custom_collections'))->custom_collections;
+	}
+
+	public static function getTypes(){
+		$fh = Loader::helper('file');
+		$pkg = Package::getByHandle('shopify');
+		$apikey = $pkg->config('apikey');
+		$password = $pkg->config('password');
+		$myshopifyURL = $pkg->config('myshopifyURL');
+		$url = 'https://'.$apikey.':'.$password.'@'.$myshopifyURL.'/admin/products.json?fields=product_type';
+		$js = Loader::helper('json');
+		// this is assinine
+		$types = $js->decode($fh->getContents($url))->products;
+		$typeArray = array();
+		if (is_array($types)) {
+			foreach($types as $t) {
+				$typeArray[$t->product_type] = $t->product_type;
+			}
+		}
+		$typeArray = array_unique($typeArray);
+		return $typeArray;
 	}
 
 	public static function getProductsForCollection($collectionID){

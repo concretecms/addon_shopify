@@ -44,7 +44,7 @@ class ShopifyProductBlockController extends BlockController {
 		$hh = Loader::helper('html');
 		$bt = BlockType::getByHandle('shopify_product');
 
-		$this->addHeaderItem($hh->javascript($uh->getBlockTypeAssetsURL($bt,'js/jquery.imagesloaded.min.js')));
+		//$this->addHeaderItem($hh->javascript($uh->getBlockTypeAssetsURL($bt,'js/jquery.imagesloaded.min.js')));
 	}
 
 	public function add_edit() {
@@ -52,17 +52,18 @@ class ShopifyProductBlockController extends BlockController {
 		$hh = Loader::helper('html');
 		$bt = BlockType::getByHandle('shopify_product');
 
-		$this->addHeaderItem($hh->css($uh->getBlockTypeAssetsURL($bt,'auto.css')));
-		$this->addHeaderItem($hh->javascript($uh->getBlockTypeAssetsURL($bt,'js/jquery.imagesloaded.min.js')));
+		//$this->addHeaderItem($hh->css($uh->getBlockTypeAssetsURL($bt,'auto.css')));
+		//$this->addHeaderItem($hh->javascript($uh->getBlockTypeAssetsURL($bt,'js/jquery.imagesloaded.min.js')));
 	}
 
 	public function add() {
 		$this->add_edit();
 		Loader::library('shopify_basic','shopify');
-		$availableProducts = shopifyBasic::getProducts();
-		$collections = shopifyBasic::getCollections();
-		$this->set('availableProducts',$availableProducts);
-		$this->set('collections',$collections);
+		//$availableProducts = shopifyBasic::getProducts();
+		//$collections = shopifyBasic::getCollections();
+		//$this->set('availableProducts',$availableProducts);
+		$types = shopifyBasic::getTypes();
+		$this->set('types',$types);
 	}
 
 	public function edit() {

@@ -12,6 +12,7 @@ var shopifyProductBlock ={
 			}
 		});		
 	},
+	/*
 	imageScales: function() {
 		//this doesn't fucking work.. The divs seem to be whatever size they want to be.
 		console.log("COME ON");
@@ -42,6 +43,8 @@ var shopifyProductBlock ={
 
 		});
 	},
+	*/
+
 	productBinds: function() {
 		$('div.product-list button.add-product').show();
 		$('div.product-list button.remove-product').hide();
@@ -80,7 +83,7 @@ var shopifyProductBlock ={
 
 $(function(){
 	shopifyProductBlock.init();
-
+	/*
 	//$('div.product-list').imagesLoaded(shopifyProductBlock.imageScales());
 	$('#collection').change(function(){
 		$.get($('#action-urls').attr('product-list')+'&collectionID='+$('#collection').val(),function(data){
@@ -88,4 +91,5 @@ $(function(){
 			shopifyProductBlock.productBinds();
 		});
 	});
+	*/
 });
