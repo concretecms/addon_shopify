@@ -34,13 +34,14 @@ class shopifyBasic {
 		$apikey = $pkg->config('apikey');
 		$password = $pkg->config('password');
 		$myshopifyURL = $pkg->config('myshopifyURL');
-		if ($keywords) {
-			$url = 'https://'.$apikey.':'.$password.'@'.$myshopifyURL.'/admin/products/search.json?order=title+ASC&query=' . $keywords . '*';
-			if ($productType) {
-				$url .= '+product_type:' . $productType;
-			}
+		if ($keywords && $productType) {
+			$url = 'https://'.$apikey.':'.$password.'@'.$myshopifyURL.'/admin/products/search.json?order=title+ASC&query=' . $keywords . '*+product_type:' . $productType;
 		} else if ($productType) {
 			$url = 'https://'.$apikey.':'.$password.'@'.$myshopifyURL.'/admin/products.json?order=title+ASC&product_type=' . $productType;
+		} else if ($keywords) {
+			$url = 'https://'.$apikey.':'.$password.'@'.$myshopifyURL.'/admin/products/search.json?order=title+ASC&query=' . $keywords . '*';
+		} else {
+			$url = 'https://'.$apikey.':'.$password.'@'.$myshopifyURL.'/admin/products/search.json?order=title+ASC';
 		}
 		$js = Loader::helper('json');
 		return $js->decode($fh->getContents($url))->products;

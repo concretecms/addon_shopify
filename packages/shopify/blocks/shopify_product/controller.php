@@ -70,11 +70,9 @@ class ShopifyProductBlockController extends BlockController {
 		$this->add_edit();
 		//$localProducts = $this->getProducts(); //nothing yet
 		Loader::library('shopify_basic','shopify');
-		$availableProducts = shopifyBasic::getProducts();
-		$collections = shopifyBasic::getCollections();
 		$chosenProduct = shopifyBasic::getProductByID($this->productID);
-		$this->set('availableProducts',$availableProducts);
-		$this->set('collections',$collections);
+		$types = shopifyBasic::getTypes();
+		$this->set('types',$types);
 		$this->set('chosenProduct',$chosenProduct);
 	}
 
