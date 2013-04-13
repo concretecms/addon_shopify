@@ -8,7 +8,7 @@ $height = $size[1];
 //$thumb->src = strstr($thumb->src,'?',true);
 
 ?>
-<div class="well span6 product">
+<div class="well clearfix product">
 	<div class="span2 scale-image" style="overflow:hidden">
 		<img class="img-rounded" target-width="140" target-height="140" height="<?=$height?>" width="<?=$width?>" src="<?=$product->images[0]->src?>">
 	</div>

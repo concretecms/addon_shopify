@@ -12,6 +12,7 @@ var shopifyProductBlock ={
 			}
 		});		
 	},
+	/*
 	imageScales: function() {
 		//this doesn't fucking work.. The divs seem to be whatever size they want to be.
 		console.log("COME ON");
@@ -46,31 +47,34 @@ var shopifyProductBlock ={
 
 		});
 	},
+	*/
+
 	productBinds: function() {
-		$('div.product-list button.add-product').show();
-		$('div.product-list button.remove-product').hide();
+		$('div.search-form-results button.add-product').show();
+		$('div.search-form-results button.remove-product').hide();
 		$('#pickedProduct button.add-product').hide();
 		$('#pickedProduct button.remove-product').show();
 
-		$('button.add-product').click(function(e) {
+		$('button.add-product').unbind().click(function(e) {
 			e.preventDefault();
 			$('#productID').val($(this).attr('product-id'));
+			var d = $(this).closest('.ui-dialog-content').get(0);
+			d.scrollTop = 0;
 			var old = $('#pickedProduct').find('div.product');
 			old.find('button.remove-product').hide();
 			old.find('button.add-product').show();
-			$('div.product-list').prepend(old);//fix the button
+			$('div.search-form-results').prepend(old);//fix the button
 			$('#pickedProduct').html($(this).parent().parent()); //this is garbage
 			$('.no-product-message').hide();
 			$(this).prev().show();
 			$(this).hide();
 		});
 
-		$('button.remove-product').click(function(e) {
+		$('button.remove-product').unbind().click(function(e) {
 			e.preventDefault();
-			$('div.product-list').prepend($(this).parent().parent()); //avoid parent parent
+			$(this).parent().parent().remove();
 			$('#productID').val('');
 			$('.no-product-message').show();
-			$(this).next().show();
 			$(this).hide();
 		});
 	},
@@ -84,7 +88,7 @@ var shopifyProductBlock ={
 
 $(function(){
 	shopifyProductBlock.init();
-
+	/*
 	//$('div.product-list').imagesLoaded(shopifyProductBlock.imageScales());
 	$('#collection').change(function(){
 		$.get($('#action-urls').attr('product-list')+'&collectionID='+$('#collection').val(),function(data){
@@ -92,4 +96,5 @@ $(function(){
 			shopifyProductBlock.productBinds();
 		});
 	});
+	*/
 });
