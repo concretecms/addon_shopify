@@ -2,7 +2,7 @@ var shopifyProductBlock ={
 	init:function(){
 		this.tabSetup();
 		this.productBinds();
-		//this.imageScales();
+		this.imageScales();
 	},
 	tabSetup: function(){
 		$('ul#ccm-blockEditPane-tabs li a').each( function(num,el){ 
@@ -17,25 +17,29 @@ var shopifyProductBlock ={
 		console.log("COME ON");
 		var $images = $('.scale-image img');
 		$images.each(function(){
-			var widthTarget = $(this).attr('desired-width');
-			var heightTarget = $(this).attr('desired-height');
+			var widthTarget = $(this).attr('target-width');
+			var heightTarget = $(this).attr('target-height');
+			var widthStart = $(this).width();
+			var heightStart = $(this).height();
 
 			widthDiff = $(this).width() - widthTarget;
 			heightDiff = $(this).height() - heightTarget;
 
 			console.log("width:"+widthDiff+" height:"+heightDiff);
 
-			//var heightRatio = container.innerHeight() / $(this).height();
-			//var widthRatio = container.innerwidth() / $(this).width();
+			var widthRatio = widthTarget / $(this).width();
+			var heightRatio = heightTarget / $(this).height();
 
 			////direction = widthDiff - heightDiff;
-			//if (widthDiff > heightDiff) {
-				//$(this).width(container.width());
-				//$(this).css('margin-top',-1*(heightDiff*heightRatio/2));
-			//} else {
-				//$(this).height(container.height());
-				//$(this).css('margin-left',-1*(widthDiff*widthRatio/2));
-			//}
+			if (widthDiff > heightDiff) {
+				$(this).height(heightTarget);
+				$(this).width(widthStart*heightRatio);
+				//$(this).css('margin-left',-1*(widthStart-$(this).width()/2));
+			} else {
+				$(this).width(widthTarget);
+				$(this).height(heightStart/widthRatio);
+				//$(this).css('margin-top',-1*(heightDiff*widthRatio/2));
+			}
 
 
 			//width > container or height > container

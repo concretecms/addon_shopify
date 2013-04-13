@@ -61,11 +61,15 @@
 					<input type="checkbox" name="showName" id="showName"<?=$showName ? ' checked':''?>><?=t('Product Name')?>
 				</label>
 				<label class="checkbox">
+					<input type="checkbox" id="showLink" name="showLink"<?=$showLink ? ' checked':''?>><?=t('Link To Product Page On Shopify')?>
+				</label>
+				<label class="checkbox">
 					<input type="checkbox" name="showDescription" id="showDescription"<?=$showDescription ? ' checked':''?>><?=t('Product Description')?>
 				</label>
 				<label class="checkbox">
-					<input type="checkbox" id="showLink" name="showLink"<?=$showLink ? ' checked':''?>><?=t('Purchase Link')?>
+					<input type="checkbox" id="showBuyThis" name="showBuyThis"<?=$showBuyThis ? ' checked':''?>><?=t('Show add-to-cart link')?>
 				</label>
+				
 				<label for="linkText"><?=t('Link Text');?></label>
 				<input type="text" id="linkText" name="linkText" value="<?=$linkText?>">
 			</div>

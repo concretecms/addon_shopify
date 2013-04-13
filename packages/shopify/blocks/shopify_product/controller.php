@@ -20,7 +20,8 @@ class ShopifyProductBlockController extends BlockController {
 		'showName' => true,
 		'showDescription' => 0, //false is not the same as zero to adodb?
 		'showLink' => true,
-		'linkText' => 'Buy This'
+		'linkText' => 'Buy This',
+		'showBuyThis'=> true
 	);
 		
 	public function getBlockTypeName() {
@@ -94,6 +95,7 @@ class ShopifyProductBlockController extends BlockController {
 			//$etc[$whatever] = $this->{$whatever};
 		//}
 		//$this->set('etc',$etc);
+		//var_dump($product->images);
 		$this->set('imgSrc',$product->images[0]->src); //wack. Need to figure out how to cache / temp file this somehow
 		//looks like copying create out of the image helper to something else would work.
 		$linkURL = 'http://'.$pkg->config('myshopifyURL').'/products/'.$product->handle.'/';

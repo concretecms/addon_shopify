@@ -32,6 +32,9 @@
 		</field>
 		<field name="linkText" type="C" size="255">
 		</field>
+		<field name="showBuyThis" type="I1">
+			<default value="0"/>
+		</field>
 	</table>
 </schema>
 
