@@ -43,5 +43,7 @@ if (count($product->variants) > 1) foreach($product->variants as $variant) {
 	}?>
 	</select>
 <?}?>
+<?if ($showBuyThis){?>
 	<a class="shopify-product-link" id="linkToShopifyCart" href="<?=$linkToBuy?>"><?=$linkText?></a>
+<?}?>
 </div>

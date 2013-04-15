@@ -13,6 +13,8 @@ class ShopifyProductBlockController extends BlockController {
 	protected $btWrapperClass = 'ccm-ui';
 
 	protected $stuff = array(
+	//setting these to defaults doesn't make sense
+	//just forces wrong data to the db.
 		'productID' => 0,
 		'showPicture' => true,
 		'pictureWidth' => 0,
@@ -34,7 +36,7 @@ class ShopifyProductBlockController extends BlockController {
 
 	public function save($args) {
 		foreach($this->stuff as $key => $default) {
-			$args[$key] = (isset($args[$key]) && $args[$key] != null) ? $args[$key] : $default;
+			$args[$key] = (isset($args[$key]) && $args[$key] != null) ? $args[$key] : 0;
 			$args[$key] = $args[$key] === 'on' ? true : $args[$key];
 		}
 		parent::save($args);
