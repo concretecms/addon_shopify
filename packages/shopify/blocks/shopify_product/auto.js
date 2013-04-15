@@ -2,7 +2,7 @@ var shopifyProductBlock ={
 	init:function(){
 		this.tabSetup();
 		this.productBinds();
-		this.imageScales();
+		//this.imageScales();
 	},
 	tabSetup: function(){
 		$('ul#ccm-blockEditPane-tabs li a').each( function(num,el){ 
