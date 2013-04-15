@@ -44,8 +44,10 @@ class ShopifyProductBlockController extends BlockController {
 		$uh = Loader::helper('concrete/urls');
 		$hh = Loader::helper('html');
 		$bt = BlockType::getByHandle('shopify_product');
+		$pkg = Package::getByHandle('shopify');
 
-		//$this->addHeaderItem($hh->javascript($uh->getBlockTypeAssetsURL($bt,'js/jquery.imagesloaded.min.js')));
+		$cartURL = 'http://'.$pkg->config('myshopifyURL').'/cart/';
+		$this->addHeaderItem('<script type="javascript"> var SHOPIFY_CART_URL ="'.$cartURL.'"; </script>');
 	}
 
 	public function add_edit() {
@@ -98,7 +100,9 @@ class ShopifyProductBlockController extends BlockController {
 		$this->set('imgSrc',$product->images[0]->src); //wack. Need to figure out how to cache / temp file this somehow
 		//looks like copying create out of the image helper to something else would work.
 		$linkURL = 'http://'.$pkg->config('myshopifyURL').'/products/'.$product->handle.'/';
+		$cartURL = 'http://'.$pkg->config('myshopifyURL').'/cart/';
 		$this->set('linkURL',$linkURL);
+		$this->set('cartURL',$cartURL);
 		$this->set('product',$product);
 		//var_dump($product);
 
