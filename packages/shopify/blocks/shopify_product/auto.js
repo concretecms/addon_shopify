@@ -68,7 +68,7 @@ var shopifyProductBlock ={
 			$('.no-product-message').hide();
 			$(this).prev().show();
 			$(this).hide();
-			$('#pickedProduct').focus();
+			//$('#pickedProduct').focus();
 		});
 
 		$('button.remove-product').unbind().click(function(e) {

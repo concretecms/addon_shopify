@@ -4,7 +4,7 @@ class ShopifyPackage extends Package {
 
 	protected $pkgHandle = 'shopify';
 	protected $appVersionRequired = '5.5';
-	protected $pkgVersion = '0.9.9.6';
+	protected $pkgVersion = '0.9.9.7';
 
 	public function getPackageDescription() {
 		return t('Adds Shopify functionality to your website.');
@@ -29,6 +29,10 @@ class ShopifyPackage extends Package {
 		$bt = BlockType::getByHandle('shopify_product');
 		if(!($bt instanceof BlockType)) {
 			BlockType::installBlockTypeFromPackage('shopify_product',$pkg);	
+		}
+		$bt = BlockType::getByHandle('shopify_cart');
+		if(!($bt instanceof BlockType)) {
+			BlockType::installBlockTypeFromPackage('shopify_cart',$pkg);	
 		}
 	}
 }

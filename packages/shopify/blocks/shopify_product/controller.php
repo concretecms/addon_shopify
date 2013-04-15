@@ -46,10 +46,10 @@ class ShopifyProductBlockController extends BlockController {
 		$uh = Loader::helper('concrete/urls');
 		$hh = Loader::helper('html');
 		$bt = BlockType::getByHandle('shopify_product');
-		$pkg = Package::getByHandle('shopify');
+		//$pkg = Package::getByHandle('shopify');
 
-		$cartURL = 'http://'.$pkg->config('myshopifyURL').'/cart/';
-		$this->addHeaderItem('<script type="text/javascript"> var SHOPIFY_CART_URL ="'.$cartURL.'"; </script>');
+		//$cartURL = 'http://'.$pkg->config('myshopifyURL').'/cart/';
+		//$this->addHeaderItem('<script type="text/javascript"> var SHOPIFY_CART_URL ="'.$cartURL.'"; </script>');
 	}
 
 	public function add_edit() {

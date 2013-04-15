@@ -4,6 +4,7 @@
 //var_dump($showDescription);
 //var_dump($showBuyThis);
 
+
 //default to the first variant, quanity 1:
 $linkToBuy = $cartURL.$product->variants[0]->id.':1';
 
