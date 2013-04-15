@@ -93,14 +93,28 @@
 				<label class="checkbox">
 					<input type="checkbox" id="showPicture" name="showPicture"<?=$showPicture ? ' checked':''?>><?=t('Product Image')?>
 				</label>
-				<div class="input-append span3 clearfix">
-					<input type="text" name="pictureWidth" id="pictureWidth" class="input-mini" value="<?=$pictureWidth?>"><span class="add-on"><?= t('px') ?></span><span class="help-inline"><?=t('Width');?></span>
-				</div>
-				<div class="input-append span3 clearfix">
-					<input type="text" name="pictureHeight" id="pictureHeight" class="input-mini" value="<?=$pictureHeight?>"><span class="add-on"><?= t('px') ?></span><span class="help-inline"><?=t('Height');?></span>
-				</div>
 			</div>
 		</div>
+		<div class="control-group">
+			<label class="control-label" for="name"><?=t('Width')?></label>
+			<div class="controls">
+				<input type="text" name="pictureWidth" id="pictureWidth" class="input-mini" value="<?=$pictureWidth?>">
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" for="name"><?=t('Image')?></label>
+			<div class="controls">
+				<input type="text" name="pictureHeight" id="pictureHeight" class="input-mini" value="<?=$pictureHeight?>">
+				<div data-label="product-image-original" style="display: none; color: #999">
+					<br/>
+					<?=t('Full Dimensions:')?> <span></span>
+				</div>
+			</div>
+	
+		</div>
+
+
 	</fieldset>
 	</div>
 </div>
@@ -127,6 +141,7 @@ ccm_shopifySearch = function() {
 		complete: function() {
 			$('.shopify-loader').hide();
 			shopifyProductBlock.productBinds();
+			shopifyProductBlock.imageScales();
 		}
 	});
 }

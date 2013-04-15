@@ -23,7 +23,7 @@ if (count($product->variants) > 1) foreach($product->variants as $variant) {
 ?>
 <div class="shopify-product" id="shopify-product-<?=$product->productID?>">
 <? if($showPicture){?>
-	<img class="shopify-product-image" src="<?=$imgSrc?>">
+	<img class="shopify-product-image" src="<?=$imgSrc?>" width="<?=$pictureWidth?>" height="<?=$pictureHeight?>" >
 <?}?>
 <?if($showName){?>
 	<div class="shopify-product-name">

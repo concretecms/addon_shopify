@@ -39,6 +39,9 @@ class ShopifyProductBlockController extends BlockController {
 			$args[$key] = (isset($args[$key]) && $args[$key] != null) ? $args[$key] : 0;
 			$args[$key] = $args[$key] === 'on' ? true : $args[$key];
 		}
+		if (!$args['linkText']) {
+			$args['linkText'] = '';
+		}
 		parent::save($args);
 	}
 
