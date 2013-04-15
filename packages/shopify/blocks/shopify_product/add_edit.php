@@ -13,7 +13,7 @@
 <div id="ccm-blockEditPane-product" class="ccm-blockEditPane">
 	<input type="hidden" name="productID" id="productID" value="<?=is_object($chosenProduct) ? $chosenProduct->id : ''?>">
 	<h3><?= t('Selected Product:') ?></h3>
-	<div id="pickedProduct">
+	<div id="pickedProduct" tabindex="100">
 	<?$style = '';
 	 if(is_object($chosenProduct)) {
 		echo Loader::element('product_form',array('product'=>$chosenProduct,'ih'=>Loader::helper('image')),'shopify');
