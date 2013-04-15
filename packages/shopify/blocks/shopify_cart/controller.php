@@ -1,8 +1,8 @@
 <?
 defined('C5_EXECUTE') or die(_("Access Denied."));
-class CartLinksBlockController extends BlockController {
+class ShopifyCartBlockController extends BlockController {
 		
-		protected $btTable = 'btCoreCommerceCartLinks';
+		protected $btTable = 'btShopifyCart';
 		protected $btInterfaceWidth = "400";
 		protected $btInterfaceHeight = "300";
 		
@@ -34,8 +34,13 @@ class CartLinksBlockController extends BlockController {
 		
 		
 		public function view() {
+			$pkg = Package::getByHandle('shopify');
+			$cartJSON = 'http://'.$pkg->config('myshopifyURL').'/cart.json';
+			$cartURL = 'http://'.$pkg->config('myshopifyURL').'/cart/';
 			//get whatever the count is, set it
 			//also want the subtotal
+			$this->set('cartJSON',$cartJSON);
+			$this->set('cartURL',$cartURL);
 			$this->set('items',$items);
 		}
 
@@ -57,6 +62,9 @@ class CartLinksBlockController extends BlockController {
 			}
 			if (!isset($data['showCheckoutLink'])) {
 				$data['showCheckoutLink'] = 0;
+			}
+			if (!isset($data['showSubtotal'])) {
+				$data['showSubtotal'] = 0;
 			}
 			parent::save($data);
 		}

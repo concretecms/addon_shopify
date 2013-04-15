@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <schema version="0.3">
-	<table name="btCoreCommerceCartLinks">
+	<table name="btShopifyCart">
 		<field name="bID" type="I">
 			<key />
 			<unsigned />
