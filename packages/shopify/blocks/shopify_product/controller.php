@@ -47,7 +47,7 @@ class ShopifyProductBlockController extends BlockController {
 		$pkg = Package::getByHandle('shopify');
 
 		$cartURL = 'http://'.$pkg->config('myshopifyURL').'/cart/';
-		$this->addHeaderItem('<script type="javascript"> var SHOPIFY_CART_URL ="'.$cartURL.'"; </script>');
+		$this->addHeaderItem('<script type="text/javascript"> var SHOPIFY_CART_URL ="'.$cartURL.'"; </script>');
 	}
 
 	public function add_edit() {

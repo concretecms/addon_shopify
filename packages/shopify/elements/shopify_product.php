@@ -5,19 +5,19 @@
 //var_dump($showBuyThis);
 
 //default to the first variant, quanity 1:
-var_dump($cartURL);
 $linkToBuy = $cartURL.$product->variants[0]->id.':1';
 
 //a little logic-y for a view here
 $variants = array();
 if (count($product->variants) > 1) foreach($product->variants as $variant) {
-	for($i = 1; $i < 3; $i++) {
-		if(strlen($variant->option{$i})){
-			$options[] = $variant->option{$i};
+	for($i = 1; $i < 4; $i++) {
+		if(strlen($variant->{"option{$i}"})){
+			$options[] = $variant->{"option{$i}"};
 		}
 	}
 	$optionString = implode(', ',$options);
 	$variants[] = '<option value="'.$variant->id.'">'.$optionString.'</option>';
+	$options = array();
 }
 ?>
 <div class="shopify-product" id="shopify-product-<?=$product->productID?>">
@@ -43,5 +43,5 @@ if (count($product->variants) > 1) foreach($product->variants as $variant) {
 	}?>
 	</select>
 <?}?>
-	<a class="shopify-product-link" href="<?=$linkToBuy?>"><?=$linkText?></a>
+	<a class="shopify-product-link" id="linkToShopifyCart" href="<?=$linkToBuy?>"><?=$linkText?></a>
 </div>
