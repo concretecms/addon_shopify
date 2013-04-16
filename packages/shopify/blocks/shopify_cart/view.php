@@ -16,7 +16,7 @@ $(function(){
 			subtotal = cart.total_price;
 			//console.log(quantity,subtotal);
 
-			$('#shopify-cart-subtotal').html(subtotal);
+			$('#shopify-cart-subtotal').html('$'+(subtotal/100).toFixed(2));
 			$('#shopify-cart-quantity').html(quantity);
 		}
 	});
