@@ -9,12 +9,10 @@ $(function(){
 		dataType: 'jsonp',crossDomain:true,
 		type: 'post',
 		success: function(cart) {
-			console.log(cart);
 			var quantity = 0;
 			var subtotal = 0;
 			quantity = cart.item_count;
 			subtotal = cart.total_price;
-			//console.log(quantity,subtotal);
 
 			$('#shopify-cart-subtotal').html('$'+(subtotal/100).toFixed(2));
 			$('#shopify-cart-quantity').html(quantity+' '+((quantity != 1)?'<?= t('items') ?>':'<?= t('item') ?>'));
