@@ -15,21 +15,13 @@ $(function(){
 			var subtotal = 0;
 			quantity = cart.item_count;
 			subtotal = cart.total_price;
-
 			if (showSubtotal){
-				$('#shopify-cart-subtotal').html('$'+(subtotal/100).toFixed(2));
+				$('.shopify-cart-subtotal').html('$'+(subtotal/100).toFixed(2));
 			}
 			if (showQuantity){
-				$('#shopify-cart-quantity').html(quantity+' '+((quantity != 1)?'<?= t('items') ?>':'<?= t('item') ?>'));
+				$('.shopify-cart-quantity').html(quantity+' '+((quantity != 1)?'<?= t('items') ?>':'<?= t('item') ?>'));
 			}
-		},
-		fail: function() {
-			if (showSubtotal){
-				$('#shopify-cart-subtotal').html('$0.00');
-			}
-			if (showQuantity){
-				$('#shopify-cart-quantity').html('<?= t('0 items') ?>');
-			}
+			$('.shopify-cart-values-wrapper').show();
 		}
 	});
 });
@@ -40,13 +32,16 @@ $(function(){
 <?php if ($showCartLink) { ?>
 	<a href="<?=$cartURL?>" ><?=$cartLinkText?></a>
 <?php } ?>
+<span class="shopify-cart-values-wrapper" style="display: none">
+
 <?php if ($showItemQuantity) { ?>
-	(<span id="shopify-cart-quantity"><?= t('0 items') ?></span>) 
+	(<span class="shopify-cart-quantity"></span>) 
 <?php } ?>
 <? if ($showItemQuantity && $showSubtotal) {?>
 |
 <?}?>
 <?php if ($showSubtotal) { ?>
-	(<span id="shopify-cart-subtotal"><?= t('$0.00') ?></span>) 
+	(<span class="shopify-cart-subtotal"></span>) 
 <?php } ?>
+</span>
 </div>

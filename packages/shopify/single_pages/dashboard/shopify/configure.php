@@ -49,6 +49,7 @@
 <p><?=t("Now you'll need to enter some information that you can find in the App Store section of your Shopify store.")?></p>
 
 <ol>
+	<li><?=t('Login to your Shopiy Website: %s', '<strong><a target="_blank" href="https://' . $myshopifyURL . '/admin/">https://' . $myshopifyURL . '/admin/</a></strong>')?></li>
 	<li><?=t('Visit the Private Apps section of your Shopify admin area. This can be found here: %s', '<strong><a target="_blank" href="https://' . $myshopifyURL . '/admin/apps/private">https://' . $myshopifyURL . '/admin/apps/private</a></strong>')?></li>
 	<li><?=t('Click the "Generate Private App" button.')?></li>
 	<li><?=t("On the next screen, copy down the <strong>API Key</strong> and <strong>Password</strong> information.")?></li>
