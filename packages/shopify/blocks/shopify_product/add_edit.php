@@ -103,7 +103,7 @@
 		</div>
 
 		<div class="control-group">
-			<label class="control-label" for="name"><?=t('Image')?></label>
+			<label class="control-label" for="name"><?=t('Height')?></label>
 			<div class="controls">
 				<input type="text" name="pictureHeight" id="pictureHeight" class="input-mini" value="<?=$pictureHeight?>">
 				<div data-label="product-image-original" style="display: none; color: #999">
