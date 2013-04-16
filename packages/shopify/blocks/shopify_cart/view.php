@@ -17,7 +17,7 @@ $(function(){
 			//console.log(quantity,subtotal);
 
 			$('#shopify-cart-subtotal').html('$'+(subtotal/100).toFixed(2));
-			$('#shopify-cart-quantity').html(quantity);
+			$('#shopify-cart-quantity').html(quantity+' '+((quantity != 1)?'<?= t('items') ?>':'<?= t('item') ?>'));
 		}
 	});
 });
@@ -29,7 +29,7 @@ $(function(){
 	<a href="<?=$cartURL?>" ><?=$cartLinkText?></a>
 <?php } ?>
 <?php if ($showItemQuantity) { ?>
-	(<span id="shopify-cart-quantity"><? echo $items . ' ' . ($items != 1 ? t('items'):t('item')) ?></span>) 
+	(<span id="shopify-cart-quantity"></span>) 
 <?php } ?>
 <?php if ($showSubtotal) { ?>
 	(<span id="shopify-cart-subtotal"></span>) 

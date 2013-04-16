@@ -10,8 +10,6 @@ class ShopifyCartBlockController extends BlockController {
 		protected $showItemQuantity = true;
 		protected $showCheckoutLink = true;
 		protected $cartLinkText = 'View Cart';
-		protected $checkoutLinkText = 'Checkout';
-		public $order;
 
 		public function getBlockTypeDescription() {
 			return t("Show links for your Shopify cart and checkout.");
