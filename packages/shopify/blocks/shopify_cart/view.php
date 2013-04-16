@@ -1,7 +1,7 @@
 <? defined('C5_EXECUTE') or die(_("Access Denied."));
 //$c = Page::getCurrentPage();
 //put an if / or for the javascript block
-?>
+if ($showItemQuantity || $showSubtotal) { ?>
 <script type="text/javascript">
 $(function(){
 	$.ajax({
@@ -17,10 +17,14 @@ $(function(){
 			$('#shopify-cart-subtotal').html('$'+(subtotal/100).toFixed(2));
 			$('#shopify-cart-quantity').html(quantity+' '+((quantity != 1)?'<?= t('items') ?>':'<?= t('item') ?>'));
 		}
+		fail: function() {
+			$('#shopify-cart-subtotal').html('$'+(subtotal/100).toFixed(2));
+			$('#shopify-cart-quantity').html(quantity+' '+((quantity != 1)?'<?= t('items') ?>':'<?= t('item') ?>'));
+		}
 	});
 });
-
 </script>
+<?}?>
 
 <div class="shopify-cart-links">
 <?php if ($showCartLink) { ?>
@@ -29,11 +33,10 @@ $(function(){
 <?php if ($showItemQuantity) { ?>
 	(<span id="shopify-cart-quantity"></span>) 
 <?php } ?>
+<? if ($showItemQuantity && $showSubtotal) {?>
+|
+<?}?>
 <?php if ($showSubtotal) { ?>
 	(<span id="shopify-cart-subtotal"></span>) 
 <?php } ?>
-	<span class='shopify-checkout-link-show' style='<?=($showCheckoutLink && $items > 0?'':'display:none')?>'>
-	    |
-		<a href=""><?php echo $checkoutLinkText?></a>
-	</span>
 </div>

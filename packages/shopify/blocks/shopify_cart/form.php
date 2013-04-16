@@ -25,6 +25,7 @@
 <div class="cc-cart-links">
 	<a href="#" class="cc-cart-link" <?=($showCartLink?'':'style="display:none"')?>><span class="cc-cart-text"><?=$cartLinkText?></span></a>
 	<span class="cc-item-quantity" <?=($showItemQuantity?'':'style="display:none"')?>>(5 items)</span>
+	<span class="cc-cart-pipe" <?=$showItemQuantity && $showSubtotal ? '' : 'style="display:none"'?>>|</span>
 	<span class="cc-item-subtotal" <?=($showSubtotal?'':'style="display:none"')?>>($50.00)</span>
 </div >
 </div>
