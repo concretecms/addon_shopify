@@ -8,18 +8,16 @@ $(function(){
 		url: '<?= $cartJSON ?>',
 		dataType: 'jsonp',crossDomain:true,
 		type: 'post',
-		success: function(r) {
-			console.log(r);
+		success: function(cart) {
+			console.log(cart);
 			var quantity = 0;
 			var subtotal = 0;
-			$.each(r.items,function(index,item) {
-				console.log(item);
-				quantity += item.quantity;
-				subtotal += item.line_price;
-			});
-			//how are we getting back proper price format
-			$('.shopify-cart-subtotal').html(subtotal);
-			$('.shopify-cart-quanity').html(quantity);
+			quantity = cart.item_count;
+			subtotal = cart.total_price;
+			//console.log(quantity,subtotal);
+
+			$('#shopify-cart-subtotal').html(subtotal);
+			$('#shopify-cart-quantity').html(quantity);
 		}
 	});
 });

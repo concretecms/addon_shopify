@@ -51,6 +51,7 @@ class ShopifyCartBlockController extends BlockController {
 			$this->set('showCheckoutLink', $this->showCheckoutLink);
 			$this->set('cartLinkText', $this->cartLinkText);
 			$this->set('checkoutLinkText', $this->checkoutLinkText);
+			$this->set('showSubtotal',$this->showSubtotal);
 		}
 		
 		public function save($data) {

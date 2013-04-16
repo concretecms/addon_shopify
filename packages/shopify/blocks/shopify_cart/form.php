@@ -14,6 +14,11 @@
 </tr>
 <tr>
 	<td valign="top">
+		<?=$form->checkbox('showSubtotal', 1, $showSubtotal)?> <?=$form->label('showSubtotal', t('Show the cost of the items in the cart.'))?><br/>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
 		<?=$form->checkbox('showCheckoutLink', 1, $showCheckoutLink)?> <?=$form->label('showCheckoutLink', t('Show link to checkout directly.'))?><br/>
 		<span class="cc-checkout-link" style="padding-left: 24px<?=($showCheckoutLink?'':';display:none')?>"><?=$form->label('checkoutLinkText', t('Checkout Link text'))?>: <?=$form->text('checkoutLinkText', $checkoutLinkText)?></span>
 	</td>
