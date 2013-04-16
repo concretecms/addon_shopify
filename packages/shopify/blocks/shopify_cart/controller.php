@@ -20,18 +20,6 @@ class ShopifyCartBlockController extends BlockController {
 		public function getBlockTypeName() {
 			return t("Shopify Cart");
 		}
-
-
-		public function on_start() {
-		}
-		
-		
-		public function on_page_view() {
-			$this->addFooterItem(Loader::helper('html')->javascript('jquery.form.js'));
-			$this->addFooterItem(Loader::helper('html')->javascript('jquery.ui.js'));
-			$this->bogus = 'test';
-		}
-		
 		
 		public function view() {
 			$pkg = Package::getByHandle('shopify');
