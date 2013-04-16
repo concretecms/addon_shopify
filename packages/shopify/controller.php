@@ -21,6 +21,7 @@ class ShopifyPackage extends Package {
 			SinglePage::add('/dashboard/shopify/configure',$pkg);
 		}
 		BlockType::installBlockTypeFromPackage('shopify_product', $pkg);	
+		BlockType::installBlockTypeFromPackage('shopify_cart',$pkg);	
 	}
 
 	public function upgrade() {
