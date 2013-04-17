@@ -4,7 +4,7 @@ class ShopifyPackage extends Package {
 
 	protected $pkgHandle = 'shopify';
 	protected $appVersionRequired = '5.6.0.2';
-	protected $pkgVersion = '0.9.9.5';
+	protected $pkgVersion = '1.0';
 
 	public function getPackageDescription() {
 		return t('Adds Shopify functionality to your website.');
