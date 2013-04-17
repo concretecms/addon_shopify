@@ -8,4 +8,7 @@ var shopifyProductBlockView ={
 
 $(function(){
 	shopifyProductBlockView.bindSelect();
+	$('#linkToShopifyCart').on('click', function() {
+		window.location.href = $(this).attr('href');
+	});
 });

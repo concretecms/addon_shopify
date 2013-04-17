@@ -52,6 +52,11 @@ class shopifyBasic {
 		return $js->decode(self::getJSON('custom_collections'))->custom_collections;
 	}
 
+	public static function getSmartCollections(){
+		$js = Loader::helper('json');
+		return $js->decode(self::getJSON('smart_collections'))->smart_collections;
+	}
+
 	public static function getTypes(){
 		$fh = Loader::helper('file');
 		$pkg = Package::getByHandle('shopify');
@@ -72,10 +77,15 @@ class shopifyBasic {
 		return $typeArray;
 	}
 
-	public static function getProductsForCollection($collectionID){
+	public static function getProductsByCollection($collectionID, $numResults = false){
 		$js = Loader::helper('json');
-		return $js->decode(self::getJSON('products.json?collection_id='.$collectionID))->products;
+		$request = 'products.json?collection_id='.$collectionID;
+		if ($numResults) {
+			$request .= '&limit=' . $numResults;
+		}
+		return $js->decode(self::getJSON($request))->products;
 	}
+
 
 }
 

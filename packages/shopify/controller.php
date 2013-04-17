@@ -3,8 +3,8 @@
 class ShopifyPackage extends Package {
 
 	protected $pkgHandle = 'shopify';
-	protected $appVersionRequired = '5.5';
-	protected $pkgVersion = '0.9.9.9';
+	protected $appVersionRequired = '5.6.0.2';
+	protected $pkgVersion = '0.9.9.5';
 
 	public function getPackageDescription() {
 		return t('Adds Shopify functionality to your website.');
@@ -22,6 +22,7 @@ class ShopifyPackage extends Package {
 		}
 		BlockType::installBlockTypeFromPackage('shopify_product', $pkg);	
 		BlockType::installBlockTypeFromPackage('shopify_cart',$pkg);	
+		BlockType::installBlockTypeFromPackage('shopify_product_list',$pkg);	
 	}
 
 	public function upgrade() {
@@ -35,5 +36,10 @@ class ShopifyPackage extends Package {
 		if(!($bt instanceof BlockType)) {
 			BlockType::installBlockTypeFromPackage('shopify_cart',$pkg);	
 		}
+		$bt = BlockType::getByHandle('shopify_product_list');
+		if(!($bt instanceof BlockType)) {
+			BlockType::installBlockTypeFromPackage('shopify_product_list',$pkg);	
+		}
+
 	}
 }

@@ -1,0 +1,26 @@
+div.ccm-shopify-product-list-no-results {
+	border: 1px solid #eee;
+	border-radius: 4px;
+	padding: 20px;
+	text-align: center;
+}
+
+div.ccm-shopify-product-list-product {
+	border-bottom: 1px solid #eee;
+	line-height: normal;
+	padding: 10px;
+	position: relative;
+	min-height: 35px;
+}
+
+div.ccm-shopify-product-list-product img {
+	position: absolute;
+}
+
+div.ccm-shopify-product-list-product-name {
+	margin-left: 60px;
+}
+
+div.ccm-shopify-product-list-product:last-child {
+	border-bottom: none;
+}

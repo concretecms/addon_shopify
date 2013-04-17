@@ -21,7 +21,7 @@ if (count($product->variants) > 1) foreach($product->variants as $variant) {
 	$options = array();
 }
 ?>
-<div class="shopify-product" id="shopify-product-<?=$product->productID?>">
+<div class="ccm-shopify-product" id="shopify-product-<?=$product->productID?>">
 <? if($showPicture){?>
 	<img class="shopify-product-image" src="<?=$imgSrc?>" width="<?=$pictureWidth?>" height="<?=$pictureHeight?>" >
 <?}?>
@@ -45,6 +45,6 @@ if (count($product->variants) > 1) foreach($product->variants as $variant) {
 	</select>
 <?}?>
 <?if ($showBuyThis){?>
-	<a class="shopify-product-link" id="linkToShopifyCart" href="<?=$linkToBuy?>"><?=$linkText?></a>
+	<button class="shopify-product-link" id="linkToShopifyCart" href="<?=$linkToBuy?>"><?=$linkText?></button>
 <?}?>
 </div>

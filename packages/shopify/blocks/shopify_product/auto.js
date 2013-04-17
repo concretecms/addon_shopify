@@ -141,13 +141,4 @@ var shopifyProductBlock ={
 
 $(function(){
 	shopifyProductBlock.init();
-	/*
-	//$('div.product-list').imagesLoaded(shopifyProductBlock.imageScales());
-	$('#collection').change(function(){
-		$.get($('#action-urls').attr('product-list')+'&collectionID='+$('#collection').val(),function(data){
-			$('div.product-list').html(data);
-			shopifyProductBlock.productBinds();
-		});
-	});
-	*/
 });

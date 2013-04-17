@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<schema version="0.3">
+	<table name="btShopifyProductList">
+		<field name="bID" type="I">
+			<key />
+			<unsigned />
+		</field>
+		<field name="shopifyCollectionID" type="C" size="255">
+			<default value="" />
+		</field>
+		<field name="shopifyCollectionType" type="C" size="1">
+			<notnull/>
+			<default value="C"/>
+		</field>
+		<field name="numResults" type="I8">
+			<default value="10"/>
+		</field>
+	</table>
+</schema>
+
