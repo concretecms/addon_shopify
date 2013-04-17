@@ -49,7 +49,7 @@
 <p><?=t("Now you'll need to enter some information that you can find in the App Store section of your Shopify store.")?></p>
 
 <ol>
-	<li><?=t('Login to your Shopiy Website: %s', '<strong><a target="_blank" href="https://' . $myshopifyURL . '/admin/">https://' . $myshopifyURL . '/admin/</a></strong>')?></li>
+	<li><?=t('Login to your Shopify Website: %s', '<strong><a target="_blank" href="https://' . $myshopifyURL . '/admin/">https://' . $myshopifyURL . '/admin/</a></strong>')?></li>
 	<li><?=t('Visit the Private Apps section of your Shopify admin area. This can be found here: %s', '<strong><a target="_blank" href="https://' . $myshopifyURL . '/admin/apps/private">https://' . $myshopifyURL . '/admin/apps/private</a></strong>')?></li>
 	<li><?=t('Click the "Generate Private App" button.')?></li>
 	<li><?=t("On the next screen, copy down the <strong>API Key</strong> and <strong>Password</strong> information.")?></li>
@@ -108,6 +108,22 @@
 			</div>
 		</div>
 	</div>
+
+	<? if ($canAddExternalLink) { ?>
+
+	<div class="control-group">
+		<div class="controls">
+			<label class="checkbox"><?=$form->checkbox('includeStoreLink', 1, $includeStoreLink)?> <span><?=t('Include external link to store in top level navigation.')?></span></label>
+		</div>
+	</div>
+	<div class="control-group" data-field="link-text">
+		<label class="control-label" for="myshopifyURL"><?=t('Link Text')?></label>
+		<div class="controls">
+			<?=$form->text('storeLinkText', $storeLinkText)?>
+		</div>
+	</div>
+	
+	<? } ?>
 	
 	<br/>
 
@@ -118,5 +134,16 @@
 
 </form>
 
+<script type="text/javascript">
+$(function() {
+	$('input[name=includeStoreLink]').on('change', function() {
+		if ($(this).is(':checked')) {
+			$('div[data-field=link-text]').show();
+		} else {
+			$('div[data-field=link-text]').hide();
+		}
+	}).trigger('change');
+});
+</script>
 <? } ?>
 <?=Loader::helper('concrete/dashboard')->getDashboardPaneFooterWrapper()?>

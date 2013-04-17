@@ -7,6 +7,14 @@ class DashboardShopifyConfigureController extends DashboardBaseController {
 		if ($pkg->config('myshopifyURL') && $pkg->config('apikey') && $pkg->config('password')) {
 			$this->redirect('/dashboard/shopify/configure', 'setup_complete');
 		}
+
+		$pc = Page::getByID(HOME_CID);
+		$cp = new Permissions($pc);
+		$canAddExternalLink = $cp->canAddExternalLink();
+
+		$this->set('canAddExternalLink', $canAddExternalLink);
+		$this->set('includeStoreLink', 1);
+		$this->set('storeLinkText', t('Shop'));
 		$this->set('myshopifyURL', $pkg->config('myshopifyURL'));
 		$this->set('bannerImg', $pkg->getRelativePath() . '/images/banner.jpg');
 	}
@@ -52,9 +60,37 @@ class DashboardShopifyConfigureController extends DashboardBaseController {
 		if (!$this->post('myshopifyURL')) {
 			$this->error->add(t('You must set your store\'s URL. Don\'t have a Shopify store? Get one using the banner below.'));
 		}
+		if ($this->post('includeStoreLink') && (!$this->post('storeLinkText'))) {
+			$this->error->add(t('If you\'re going to add a link to your store you must give it a name.'));
+		}
 		if (!$this->error->has()) {
 			$pkg = Package::getByHandle('shopify');
 			$pkg->saveConfig('myshopifyURL', $this->post('myshopifyURL'));
+			$shopifyExternalLinkID = $pkg->config('shopifyExternalLinkID');
+			if ($shopifyExternalLinkID) {
+				$shopifyExternalPage = Page::getByID($shopifyExternalLinkID, 'RECENT');
+			}
+			// now, we check to see if the user wants a store URL in their top navigation. If so, we create an external link with their text 
+			$pc = Page::getByID(HOME_CID);
+			$cp = new Permissions($pc);
+			if ($cp->canAddExternalLink() && $this->post('includeStoreLink')) {
+				// first we check to see if one already exists.
+				if ($shopifyExternalLinkID) {
+					$shopifyExternalPage->updateCollectionAliasExternal($this->post('storeLinkText'), 'https://' . $this->post('myshopifyURL'), false);
+				} else {
+					$ncID = $pc->addCollectionAliasExternal($this->post('storeLinkText'), 'https://' . $this->post('myshopifyURL'), false);						
+					if ($ncID) {
+						$pkg->saveConfig('shopifyExternalLinkID', $ncID);
+					}
+				}
+			}
+			if (!$this->post('includeStoreLink') && $shopifyExternalLinkID) {
+				$cp = new Permissions($shopifyExternalPage);
+				if ($cp->canDeletePage()) {
+					$shopifyExternalPage->delete();
+					$pkg->clearConfig('shopifyExternalLinkID');
+				}
+			}
 			$this->redirect('/dashboard/shopify/configure', 'set_api_information');
 		}
 		$this->view();
