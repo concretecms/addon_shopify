@@ -1,3 +1,5 @@
+<? defined('C5_EXECUTE') or die(_("Access Denied.")); ?>
+
 <div class="ccm-block-field-group">
 <h3><?=t('Cart Links Options')?></h3>
 <table border="0" cellspacing="0" cellpadding="0">
