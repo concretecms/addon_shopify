@@ -1,4 +1,16 @@
 <?defined('C5_EXECUTE') or die(_("Access Denied."));
+//defaults:
+$defaults = array('showName','showLink','showBuyThis');
+
+if(!isset($linkText)) {
+	$linkText = t('Add To Cart');
+}
+
+foreach($defaults as $default) {
+	if(!isset(${$default})) {
+		${$default} = 1;
+	}
+}
 
 //echo $this->action('product_list').'&collectionID=0';
 	//button[class*='product-'] {
@@ -79,10 +91,10 @@
 					<input type="checkbox" name="showDescription" id="showDescription"<?=$showDescription ? ' checked':''?>><?=t('Product Description')?>
 				</label>
 				<label class="checkbox">
-					<input type="checkbox" id="showBuyThis" name="showBuyThis"<?=$showBuyThis ? ' checked':''?>><?=t('Show add-to-cart link')?>
+					<input type="checkbox" id="showBuyThis" name="showBuyThis"<?=$showBuyThis ? ' checked':''?>><?=t('Show Add-To-Cart Button')?>
 				</label>
 				
-				<label for="linkText"><?=t('Link Text');?></label>
+				<label for="linkText"><?=t('Button Text');?></label>
 				<input type="text" id="linkText" name="linkText" value="<?=$linkText?>">
 			</div>
 		</div>
