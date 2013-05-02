@@ -54,44 +54,6 @@ var shopifyProductBlock ={
 		});
 	},
 
-
-	/*
-	imageScales: function() {
-		//this doesn't fucking work.. The divs seem to be whatever size they want to be.
-		console.log("COME ON");
-		var $images = $('.scale-image img');
-		$images.each(function(){
-			var widthTarget = $(this).attr('target-width');
-			var heightTarget = $(this).attr('target-height');
-			var widthStart = $(this).width();
-			var heightStart = $(this).height();
-
-			widthDiff = $(this).width() - widthTarget;
-			heightDiff = $(this).height() - heightTarget;
-
-			console.log("width:"+widthDiff+" height:"+heightDiff);
-
-			var widthRatio = widthTarget / $(this).width();
-			var heightRatio = heightTarget / $(this).height();
-
-			////direction = widthDiff - heightDiff;
-			if (widthDiff > heightDiff) {
-				$(this).height(heightTarget);
-				$(this).width(widthStart*heightRatio);
-				//$(this).css('margin-left',-1*(widthStart-$(this).width()/2));
-			} else {
-				$(this).width(widthTarget);
-				$(this).height(heightStart/widthRatio);
-				//$(this).css('margin-top',-1*(heightDiff*widthRatio/2));
-			}
-
-
-			//width > container or height > container
-
-		});
-	},
-	*/
-
 	productBinds: function() {
 		$('div.search-form-results button.add-product').show();
 		$('div.search-form-results button.remove-product').hide();
