@@ -5,7 +5,9 @@
 <? if ($this->controller->getTask() == 'setup_complete') { ?>
 
 
-	<div class="alert alert-success"><?=t("You have successfully connected to your Shopify account!")?></div>
+	<div class="alert alert-success"><?=t("You have successfully connected to your Shopify account!")?>
+	<h4><?= t('Be sure to check out the Shopify <a href="www.concrete5.org/marketplace/shopify/documentation/">documentation</a> on concrete5.org') ?></h4>
+	</div>
 
 	<form class="form-horizontal">
 		<legend><?=t('Settings')?></legend>
