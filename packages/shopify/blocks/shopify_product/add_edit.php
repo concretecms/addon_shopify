@@ -106,14 +106,14 @@ foreach($defaults as $default) {
 				</label>
 			</div>
 		</div>
-		<div class="control-group">
+		<div class="control-group image-dimensions-form">
 			<label class="control-label" for="name"><?=t('Width')?></label>
 			<div class="controls">
 				<input type="text" name="pictureWidth" id="pictureWidth" class="input-mini" value="<?=$pictureWidth?>">
 			</div>
 		</div>
 
-		<div class="control-group">
+		<div class="control-group image-dimensions-form">
 			<label class="control-label" for="name"><?=t('Height')?></label>
 			<div class="controls">
 				<input type="text" name="pictureHeight" id="pictureHeight" class="input-mini" value="<?=$pictureHeight?>">

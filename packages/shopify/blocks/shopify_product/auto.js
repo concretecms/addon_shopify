@@ -2,6 +2,7 @@ var shopifyProductBlock ={
 	init:function(){
 		this.tabSetup();
 		this.productBinds();
+		this.checkboxBind();
 		this.imageScales();
 	},
 	tabSetup: function(){
@@ -50,6 +51,21 @@ var shopifyProductBlock ={
 			    	}
 				    $('#pictureWidth').val(w);
 			    }
+			}
+		});
+	},
+
+	checkboxBind: function() {
+		if($('#showPicture').is(':checked')) {
+			$('.image-dimensions-form').show();
+		}else{
+			$('.image-dimensions-form').hide();
+		}
+		$('#showPicture').click(function() {
+			if($(this).is(':checked')) {
+				$('.image-dimensions-form').show();
+			}else{
+				$('.image-dimensions-form').hide();
 			}
 		});
 	},
