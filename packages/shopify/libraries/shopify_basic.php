@@ -35,9 +35,9 @@ class shopifyBasic {
 		$password = $pkg->config('password');
 		$myshopifyURL = $pkg->config('myshopifyURL');
 		if ($keywords && $productType) {
-			$url = 'https://'.$apikey.':'.$password.'@'.$myshopifyURL.'/admin/products/search.json?order=title+ASC&query=' . $keywords . '*+product_type:' . $productType;
+			$url = 'https://'.$apikey.':'.$password.'@'.$myshopifyURL.'/admin/products/search.json?order=title+ASC&query=' . $keywords . '*+product_type:' . urlencode($productType);
 		} else if ($productType) {
-			$url = 'https://'.$apikey.':'.$password.'@'.$myshopifyURL.'/admin/products.json?order=title+ASC&product_type=' . $productType;
+			$url = 'https://'.$apikey.':'.$password.'@'.$myshopifyURL.'/admin/products.json?order=title+ASC&product_type=' . urlencode($productType);
 		} else if ($keywords) {
 			$url = 'https://'.$apikey.':'.$password.'@'.$myshopifyURL.'/admin/products/search.json?order=title+ASC&query=' . $keywords . '*';
 		} else {
