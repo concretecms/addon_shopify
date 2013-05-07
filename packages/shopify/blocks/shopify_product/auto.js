@@ -119,4 +119,7 @@ var shopifyProductBlock ={
 
 $(function(){
 	shopifyProductBlock.init();
+	$('img[data-image=product]').each(function() {
+		$(this).attr('src', $(this).attr('src'));
+	});
 });
