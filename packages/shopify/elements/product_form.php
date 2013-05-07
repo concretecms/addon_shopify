@@ -12,11 +12,11 @@
 	<div style="float: left; width: 160px;">
 		<img data-image="product" id="im<?=$product->id?>" src="<?=$product->images[0]->src?>" style="display: none; border: 1px solid #999; border-radius: 6px;" />
 	</div>
-	<div style="float: left; width: 160px; margin-left: 20px">
+	<div class="span4">
 		<h4><?=$product->title?></h4>
 		<p><?=strip_tags($product->body_html)?></p>
 	</div>
-	<div style="width: 160px; margin-left: 20px; float: left; text-align: right">
+	<div class="span6">
 		<button class="btn btn-danger pull-right remove-product" ><?=t('Remove')?></button>
 		<button class="btn btn-primary pull-right add-product" product-id="<?=$product->id?>"><?=t('Choose Product')?></button>
 	</div>
