@@ -32,7 +32,6 @@ foreach($defaults as $default) {
 	}?>
 	</div>
 	<div class="no-product-message alert"<?=$style?>><?= t("No product selected.") ?></div>
-
 	<div class="clearfix">
 
 		<div class="search-form">
@@ -47,14 +46,13 @@ foreach($defaults as $default) {
 				<option value="<?=$type?>"><?=$type?></option>
 			<?}?>
 			</select>
-
 			<button type="button" class="btn" data-submit="shopify-search"><?=t('Search')?></button>
 
 			<img src="<?=ASSETS_URL_IMAGES?>/loader_intelligent_search.gif" width="43" height="11" class="shopify-loader" style="display: none" />
 		</div>
 
 		<div class="search-form-results" style="margin-top: 10px">
-			<div class="alert alert-info"><?=t('Search for products using the form below.')?></div>
+			<div class="alert alert-info"><?=t('Search for products using the form above.')?></div>
 		</div>
 	</div>
 
@@ -99,7 +97,7 @@ foreach($defaults as $default) {
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="name"><?=t('Image')?></label>
+			<label class="control-label" for="showPicture"><?=t('Image')?></label>
 			<div class="controls">
 				<label class="checkbox">
 					<input type="checkbox" id="showPicture" name="showPicture"<?=$showPicture ? ' checked':''?>><?=t('Product Image')?>
@@ -107,14 +105,14 @@ foreach($defaults as $default) {
 			</div>
 		</div>
 		<div class="control-group image-dimensions-form">
-			<label class="control-label" for="name"><?=t('Width')?></label>
+			<label class="control-label" for="pictureWidth"><?=t('Width')?></label>
 			<div class="controls">
 				<input type="text" name="pictureWidth" id="pictureWidth" class="input-mini" value="<?=$pictureWidth?>">
 			</div>
 		</div>
 
 		<div class="control-group image-dimensions-form">
-			<label class="control-label" for="name"><?=t('Height')?></label>
+			<label class="control-label" for="pictureHeight"><?=t('Height')?></label>
 			<div class="controls">
 				<input type="text" name="pictureHeight" id="pictureHeight" class="input-mini" value="<?=$pictureHeight?>">
 				<div data-label="product-image-original" style="display: none; color: #999">
@@ -127,7 +125,6 @@ foreach($defaults as $default) {
 
 
 	</fieldset>
-	</div>
 </div>
 
 <script type="text/javascript">
